@@ -27,6 +27,14 @@ namespace UI
         case "1":
           Console.WriteLine("Please enter customer name:");
           _newCustomer.Name = Console.ReadLine();
+
+          // //Check if the input is empty
+          // while (_newCustomer.Name == "")
+          // {
+          //   Console.WriteLine("Name must not be empty!");
+          //   Console.WriteLine("Please enter customer name:");
+          //   _newCustomer.Name = Console.ReadLine();
+          // }
           return "AddNewCustomer";
         case "2":
           Console.WriteLine("Please enter the address:");

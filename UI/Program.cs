@@ -19,18 +19,46 @@ while (repeat)
 
   switch (ans)
   {
+    //Customers Options Menu
     case "CustomersMenu":
       menu = new CustomersMenu();
       break;
     case "AddNewCustomer":
       menu = new AddCustomerMenu();
       break;
+    case "SearchCustomer":
+      menu = new SearchCustomerMenu();
+      break;
+
+    //Stores Options Menu
+    case "StoresMenu":
+      menu = new StoresMenu();
+      break;
+    case "SearchStore":
+      menu = new SearchStoreMenu();
+      break;
+    case "ListStores":
+      menu = new ListStores();
+      break;
+
+    //Customer/Store Manager
+    case "CustomerManager":
+      menu = new CustomerManager();
+      break;
+    case "StoreManager":
+      menu = new StoreManger();
+      break;
+
+    //Main Menu
     case "MainMenu":
       menu = new MainMenu();
       break;
+
+    //Exit
     case "Exit":
       repeat = false;
       break;
+
     default:
       Console.WriteLine("Page does not exist!");
       break;

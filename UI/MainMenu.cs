@@ -9,11 +9,17 @@ namespace UI
     public void Display()
     {
       Console.WriteLine("Welcome to Our Shopping Mall");
-      Console.WriteLine("What would you like to do?");
+      Console.WriteLine("---If you are new, try to start here---");
       Console.WriteLine("[1] - Customers");
       Console.WriteLine("[2] - Stores");
+      Console.WriteLine("---If you are already a part of our shopping mall, use options below to start---");
+      Console.WriteLine("[3] - Customer Manager");
+      Console.WriteLine("[4] - Store Manager");
+      // Console.WriteLine("---Shopping Mall Department ONLY---");
+      // Console.WriteLine("[9] - Inventory Management");
       Console.WriteLine("-----");
       Console.WriteLine("[0] - Exit");
+      Console.WriteLine("What would you like to do?");
     }
 
     public string UserChoice()
@@ -29,6 +35,10 @@ namespace UI
           return "CustomersMenu";
         case "2":
           return "StoresMenu";
+        case "3":
+          return "CustomerManager";
+        case "4":
+          return "StoreManager";
         default:
           Console.WriteLine("Please input a valid resonse!");
           Console.WriteLine("Please press Enter to continue");
