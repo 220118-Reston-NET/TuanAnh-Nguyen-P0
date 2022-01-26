@@ -50,7 +50,7 @@ namespace UI
           string _userInputQuantity = Console.ReadLine();
 
           //Check if the input is empty
-          while (!_userInputQuantity.All(Char.IsDigit))
+          while (!_userInputQuantity.All(Char.IsDigit) || _userInputQuantity == "")
           {
             Console.WriteLine("Quantity have to be a number and should not be empty!");
             Console.WriteLine("Please enter the quantity again:");
@@ -63,7 +63,7 @@ namespace UI
           string _userInputPrice = Console.ReadLine();
 
           //Check if the input is empty
-          while (!_userInputPrice.All(Char.IsDigit))
+          while (!_userInputPrice.All(Char.IsDigit) || _userInputPrice == "")
           {
             Console.WriteLine("Price have to be a number and should not be empty!");
             Console.WriteLine("Please enter the price again:");

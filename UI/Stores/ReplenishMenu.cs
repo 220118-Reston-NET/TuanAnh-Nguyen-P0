@@ -47,7 +47,7 @@ namespace UI
           return "InventoryMenu";
 
         default:
-          //Check if the input is existed in Name of the StoreFront
+          //Check if the input is existed in Name of the Product
           for (int i = 0; i < _listProducts.Count(); i++)
           {
             if (_userInput == _listProducts[i].Name)

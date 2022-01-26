@@ -77,9 +77,7 @@ namespace UI
         case "2":
           if (ListCustomersMenu._currentCustomer.Name != "")
           {
-            //Place a new order
-            //TODO
-            return "MainMenu";
+            return "PlaceNewOrderMenu";
           }
           else if (ListStoresMenu._currentStoreFront.Name != "")
           {

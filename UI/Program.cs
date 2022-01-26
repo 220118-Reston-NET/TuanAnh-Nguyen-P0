@@ -36,6 +36,14 @@ while (repeat)
       menu = new ListCustomersMenu(new CustomerBL(new CustomerRepositoty()));
       break;
 
+    //Customer Options after signed in
+    case "PlaceNewOrderMenu":
+      menu = new PlaceNewOrderMenu(new StoreFrontBL(new StoreFrontRepository()));
+      break;
+    case "ListOrderableProdMenu":
+      menu = new ListOrderableProdMenu(new ProductBL(new ProductRepository()));
+      break;
+
     //StoreFront Options after signed in
     case "InventoryMenu":
       menu = new InventoryMenu();
