@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Model;
 using UI;
+using BL;
+using DL;
 
 // Console.WriteLine("Hello, World!");
 
@@ -19,35 +21,50 @@ while (repeat)
 
   switch (ans)
   {
-    //Customers Options Menu
-    case "CustomersMenu":
-      menu = new CustomersMenu();
-      break;
+    //Sign Up Options
     case "AddNewCustomer":
-      menu = new AddCustomerMenu();
+      menu = new AddCustomerMenu(new CustomerBL(new CustomerRepositoty()));
       break;
+    case "AddNewStoreFront":
+      menu = new AddNewStoreFrontMenu(new StoreFrontBL(new StoreFrontRepository()));
+      break;
+    //Sign In Options
+    case "ListStores":
+      menu = new ListStoresMenu(new StoreFrontBL(new StoreFrontRepository()));
+      break;
+    case "ListCustomers":
+      menu = new ListCustomersMenu(new CustomerBL(new CustomerRepositoty()));
+      break;
+
+    //StoreFront Options after signed in
+    case "InventoryMenu":
+      menu = new InventoryMenu();
+      break;
+    case "AddNewProduct":
+      menu = new AddNewProductMenu(new ProductBL(new ProductRepository()));
+      break;
+    case "ReplenishInventory":
+      menu = new ReplenishMenu(new ProductBL(new ProductRepository()));
+      break;
+    case "EditProduct":
+      menu = new EditProductMenu(new ProductBL(new ProductRepository()));
+      break;
+
+
+
+
+
+    //Customers Options Menu
+
     case "SearchCustomer":
       menu = new SearchCustomerMenu();
       break;
 
-    //Stores Options Menu
-    case "StoresMenu":
-      menu = new StoresMenu();
-      break;
     case "SearchStore":
       menu = new SearchStoreMenu();
       break;
-    case "ListStores":
-      menu = new ListStores();
-      break;
 
-    //Customer/Store Manager
-    case "CustomerManager":
-      menu = new CustomerManager();
-      break;
-    case "StoreManager":
-      menu = new StoreManger();
-      break;
+
 
     //Main Menu
     case "MainMenu":

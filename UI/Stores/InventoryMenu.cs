@@ -1,15 +1,14 @@
 namespace UI
 {
-  public class StoresMenu : IMenu
+  public class InventoryMenu : IMenu
   {
     public void Display()
     {
-      Console.WriteLine("Stores");
-      Console.WriteLine("[1] - List all the Stores");
-      Console.WriteLine("[2] - Search for a store");
-      Console.WriteLine("-----");
+      Console.WriteLine("You are currently manage the  " + ListStoresMenu._currentStoreFront.Name + "'s inventory");
+      Console.WriteLine("What do you want to do?");
+      Console.WriteLine("[1] - Add New Product");
+      Console.WriteLine("[2] - View All Products & Replenishment");
       Console.WriteLine("[0] - Go back");
-      Console.WriteLine("What would you like to do:");
     }
 
     public string UserChoice()
@@ -21,14 +20,14 @@ namespace UI
         case "0":
           return "MainMenu";
         case "1":
-          return "ListStores";
+          return "AddNewProduct";
         case "2":
-          return "SearchStore";
+          return "ReplenishInventory";
         default:
           Console.WriteLine("Please input a valid resonse!");
           Console.WriteLine("Please press Enter to continue");
           Console.ReadLine();
-          return "StoresMenu";
+          return "InventoryMenu";
       }
     }
   }

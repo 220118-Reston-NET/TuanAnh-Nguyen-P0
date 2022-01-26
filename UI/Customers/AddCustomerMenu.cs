@@ -1,6 +1,8 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+
+using BL;
 using Model;
 
 namespace UI
@@ -8,6 +10,12 @@ namespace UI
   public class AddCustomerMenu : IMenu
   {
     private static Customer _newCustomer = new Customer();
+
+    private ICustomerBL _cusBL;
+    public AddCustomerMenu(ICustomerBL p_cus)
+    {
+      _cusBL = p_cus;
+    }
     public void Display()
     {
       Console.WriteLine("Enter new customer information");
@@ -16,7 +24,7 @@ namespace UI
       Console.WriteLine("[3] - Email: " + _newCustomer.Email);
       Console.WriteLine("[4] - Phone Number: " + _newCustomer.PhoneNumber);
       Console.WriteLine("-----");
-      Console.WriteLine("[9] - Save");
+      Console.WriteLine("[9] - Save & Go back");
       Console.WriteLine("[0] - Go back");
       Console.WriteLine("What do you want to modify:");
     }
@@ -28,7 +36,7 @@ namespace UI
       switch (_userInput)
       {
         case "0":
-          return "CustomersMenu";
+          return "MainMenu";
         case "1":
           Console.WriteLine("Please enter customer name:");
           string _userInputName = Console.ReadLine();
@@ -82,6 +90,26 @@ namespace UI
           }
           _newCustomer.PhoneNumber = _userInputPhoneNumber;
           return "AddNewCustomer";
+        case "9":
+          //Check if all information filled completely
+          if (_newCustomer.Name == "" || _newCustomer.Address == "" || _newCustomer.Email == "" || _newCustomer.PhoneNumber == "")
+          {
+            Console.WriteLine("You need to fill every information above before saving!");
+            System.Threading.Thread.Sleep(2000);
+            return "AddNewCustomer";
+          }
+          else
+          {
+            //Add customer to the database
+            _cusBL.AddCustomer(_newCustomer);
+            Console.WriteLine("Added new customer succesfully!");
+            Console.WriteLine("Returning back to the main menu!");
+            System.Threading.Thread.Sleep(2000);
+
+            //Clear the input information after saved and create a new one
+            _newCustomer = new Customer();
+            return "MainMenu";
+          }
         default:
           Console.WriteLine("Please input a valid resonse!");
           Console.WriteLine("Please press Enter to continue");
