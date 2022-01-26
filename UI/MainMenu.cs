@@ -36,9 +36,8 @@ namespace UI
         Console.WriteLine("[3] - Customer");
         Console.WriteLine("[4] - Store Manager");
       }
-      Console.WriteLine("---You also can use these options below to search for:");
+      Console.WriteLine("---You also can use this option below to search for:");
       Console.WriteLine("[5] - Customer");
-      Console.WriteLine("[6] - Store");
       Console.WriteLine("-------------");
       Console.WriteLine("[0] - Exit");
       Console.WriteLine("What would you like to do?");
@@ -60,15 +59,11 @@ namespace UI
         case "1":
           if (ListCustomersMenu._currentCustomer.Name != "")
           {
-            //Show Order History
-            //TODO
-            return "MainMenu";
+            return "ListCustomerOrdersMenu";
           }
           else if (ListStoresMenu._currentStoreFront.Name != "")
           {
-            //Show Orders of StoreFront
-            //TODO
-            return "MainMenu";
+            return "ListStoreOrdersMenu";
           }
           else
           {
@@ -81,8 +76,6 @@ namespace UI
           }
           else if (ListStoresMenu._currentStoreFront.Name != "")
           {
-            //Check Inventory
-            //TODO
             return "InventoryMenu";
           }
           else
@@ -94,6 +87,9 @@ namespace UI
           return "ListCustomers";
         case "4":
           return "ListStores";
+
+        case "5":
+          return "SearchCustomerMenu";
         default:
           Console.WriteLine("Please input a valid resonse!");
           Console.WriteLine("Please press Enter to continue");

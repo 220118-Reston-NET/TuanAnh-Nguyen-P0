@@ -23,7 +23,6 @@
     public string Address { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
-    public List<Orders> ListOrders;
 
     //Default constructor to add default values to the properties
     public Customer()
@@ -33,6 +32,10 @@
       Email = "";
       PhoneNumber = "";
     }
-  }
 
+    public override string ToString()
+    {
+      return $"Name: {Name}\nAddress: {Address}\nEmail: {Email}\nPhoneNumber: {PhoneNumber}";
+    }
+  }
 }

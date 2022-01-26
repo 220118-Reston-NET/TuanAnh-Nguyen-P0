@@ -1,13 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Model;
-using UI;
+﻿using UI;
 using BL;
 using DL;
-
-// Console.WriteLine("Hello, World!");
-
-// Customer cus = new Customer();
-// cus.Name = "A"; //Validation is working since can't input a empty string
 
 bool repeat = true;
 IMenu menu = new MainMenu();
@@ -41,7 +34,10 @@ while (repeat)
       menu = new PlaceNewOrderMenu(new StoreFrontBL(new StoreFrontRepository()));
       break;
     case "ListOrderableProdMenu":
-      menu = new ListOrderableProdMenu(new ProductBL(new ProductRepository()));
+      menu = new ListOrderableProdMenu(new OrderBL(new OrderRepository()), new ProductBL(new ProductRepository()));
+      break;
+    case "ListCustomerOrdersMenu":
+      menu = new ListCustomerOrdersMenu(new OrderBL(new OrderRepository()));
       break;
 
     //StoreFront Options after signed in
@@ -57,22 +53,14 @@ while (repeat)
     case "EditProduct":
       menu = new EditProductMenu(new ProductBL(new ProductRepository()));
       break;
-
-
-
-
-
-    //Customers Options Menu
-
-    case "SearchCustomer":
-      menu = new SearchCustomerMenu();
+    case "ListStoreOrdersMenu":
+      menu = new ListStoreOrdersMenu(new OrderBL(new OrderRepository()));
       break;
 
-    case "SearchStore":
-      menu = new SearchStoreMenu();
+    //Search Menu
+    case "SearchCustomerMenu":
+      menu = new SearchCustomerMenu(new CustomerBL(new CustomerRepositoty()));
       break;
-
-
 
     //Main Menu
     case "MainMenu":

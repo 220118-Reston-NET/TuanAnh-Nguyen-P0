@@ -35,12 +35,14 @@ namespace Model
     //   }
     // }
     public string ProductName { get; set; }
+    public int Price { get; set; }
     public int Quantity { get; set; }
     public string ProductID { get; set; }
 
     public LineItems()
     {
       ProductName = "";
+      Price = 0;
       Quantity = 0;
     }
   }

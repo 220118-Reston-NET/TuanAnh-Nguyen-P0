@@ -52,8 +52,6 @@ namespace UI
             if (_userInput == _listStores[i].Name)
             {
               _selectedStore = _listStores[i];
-              // Console.WriteLine("Start shopping at " + _selectedStore.Name);
-
               return "ListOrderableProdMenu";
             }
           }

@@ -1,0 +1,38 @@
+[
+  {
+    "OrderID": "505979d9-7045-41ba-bf17-9da9f1b51d8e",
+    "ListLineItems": [
+      {
+        "ProductName": "iPac",
+        "Price": 17,
+        "Quantity": 19,
+        "ProductID": "3c7265e8-8dcc-4b53-8206-0824c2f988e0"
+      },
+      {
+        "ProductName": "iPhone1",
+        "Price": 12,
+        "Quantity": 4,
+        "ProductID": "4967ea26-0ca2-486f-8eb1-f5c65fe40567"
+      }
+    ],
+    "CustomerID": "f55a36dc-b505-4ac9-91f8-f89b1647da8d",
+    "StoreID": "8686ba8b-7859-4792-8623-e4c6b492c2c9",
+    "OrderDate": "1/26/2022 1:25:44 PM",
+    "TotalPrice": 371
+  },
+  {
+    "OrderID": "23f57cb2-8a5b-423e-9d43-83bbf7ce13bd",
+    "ListLineItems": [
+      {
+        "ProductName": "iPac",
+        "Price": 17,
+        "Quantity": 45,
+        "ProductID": "3c7265e8-8dcc-4b53-8206-0824c2f988e0"
+      }
+    ],
+    "CustomerID": "f55a36dc-b505-4ac9-91f8-f89b1647da8d",
+    "StoreID": "8686ba8b-7859-4792-8623-e4c6b492c2c9",
+    "OrderDate": "1/26/2022 1:46:31 PM",
+    "TotalPrice": 765
+  }
+]
