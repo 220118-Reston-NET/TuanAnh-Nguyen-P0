@@ -84,9 +84,23 @@ namespace UI
           }
 
         case "3":
-          return "ListCustomers";
+          if (ListCustomersMenu._currentCustomer.Name != "" || ListStoresMenu._currentStoreFront.Name != "")
+          {
+            goto default;
+          }
+          else
+          {
+            return "ListCustomers";
+          }
         case "4":
-          return "ListStores";
+          if (ListCustomersMenu._currentCustomer.Name != "" || ListStoresMenu._currentStoreFront.Name != "")
+          {
+            goto default;
+          }
+          else
+          {
+            return "ListStores";
+          }
 
         case "5":
           return "SearchCustomerMenu";

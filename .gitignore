@@ -1,6 +1,9 @@
 bin
 obj
 
+# Ignore local change during development
+logs
+
 # macOS
 .DS_Store
 .vscode
