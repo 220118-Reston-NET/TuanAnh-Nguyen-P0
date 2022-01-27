@@ -52,6 +52,7 @@ namespace UI
           {
             if (_userInput == _listProducts[i].Name)
             {
+              Log.Information("User just choose to edit the product: " + _listProducts[i]);
               _selectedReplProd = _listProducts[i];
               return "EditProduct";
             }

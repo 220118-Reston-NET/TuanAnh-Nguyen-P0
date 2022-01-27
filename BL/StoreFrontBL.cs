@@ -12,6 +12,16 @@ namespace BL
     }
     public StoreFront AddStoreFront(StoreFront p_storef)
     {
+      List<StoreFront> _listStores = _repo.GetALlStoreFronts();
+
+      for (int i = 0; i < _listStores.Count(); i++)
+      {
+        if (_listStores[i].Name == p_storef.Name)
+        {
+          throw new Exception("Cannot add new StoreFront due to this name is already in the database!");
+        }
+      }
+
       return _repo.AddStoreFront(p_storef);
     }
 

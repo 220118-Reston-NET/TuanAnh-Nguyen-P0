@@ -56,6 +56,7 @@ namespace UI
             {
               _currentCustomer = _listCustomers[i];
               Console.WriteLine("Logging in as " + _currentCustomer.Name);
+              Log.Information("User just logged in as a Customer: " + _currentCustomer.Name);
               Console.WriteLine("Returning to the main menu...");
               System.Threading.Thread.Sleep(2000);
 

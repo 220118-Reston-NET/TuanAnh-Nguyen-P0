@@ -3,7 +3,7 @@
     "Name": "iPhone1",
     "Price": 12,
     "Desc": "Oakovjq",
-    "Quantity": 55,
+    "Quantity": 51,
     "ProductID": "4967ea26-0ca2-486f-8eb1-f5c65fe40567",
     "StoreID": "8686ba8b-7859-4792-8623-e4c6b492c2c9"
   },
@@ -11,7 +11,7 @@
     "Name": "iPac",
     "Price": 17,
     "Desc": "OkayTest",
-    "Quantity": 458,
+    "Quantity": 455,
     "ProductID": "3c7265e8-8dcc-4b53-8206-0824c2f988e0",
     "StoreID": "8686ba8b-7859-4792-8623-e4c6b492c2c9"
   },
@@ -19,8 +19,16 @@
     "Name": "Macbook",
     "Price": 91,
     "Desc": "awbqbqb",
-    "Quantity": 4,
+    "Quantity": 0,
     "ProductID": "ed756bf5-1aa6-48bb-a14a-0797bfd4c884",
     "StoreID": "7d5047be-7982-4293-adec-61e37142a0a9"
+  },
+  {
+    "Name": "iPac2",
+    "Price": 61,
+    "Desc": "asb Goog",
+    "Quantity": 54,
+    "ProductID": "92f58202-c229-4a43-91d2-4b254aebaa9e",
+    "StoreID": "8686ba8b-7859-4792-8623-e4c6b492c2c9"
   }
 ]

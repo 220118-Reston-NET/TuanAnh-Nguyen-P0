@@ -45,5 +45,10 @@ namespace Model
       Price = 0;
       Quantity = 0;
     }
+
+    public override string ToString()
+    {
+      return $"{ProductName} - ${Price}({Quantity})";
+    }
   }
 }

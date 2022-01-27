@@ -66,15 +66,28 @@ namespace UI
           }
           else
           {
-            //Add store front to the database
-            _storefBL.AddStoreFront(_newStoreFront);
-            Console.WriteLine("Added new store front succesfully!");
-            Console.WriteLine("Returning back to the main menu!");
-            System.Threading.Thread.Sleep(2000);
+            try
+            {
+              //Add store front to the database
+              Log.Information("Adding a new StoreFront to the database: " + _newStoreFront);
+              _storefBL.AddStoreFront(_newStoreFront);
+              Log.Information("Added new store front succesfully!");
+              Console.WriteLine("Added new store front succesfully!");
+              Console.WriteLine("Returning back to the main menu!");
+              System.Threading.Thread.Sleep(2000);
 
-            //Clear the input information after saved and create a new one
-            _newStoreFront = new StoreFront();
-            return "MainMenu";
+              //Clear the input information after saved and create a new one
+              _newStoreFront = new StoreFront();
+              return "MainMenu";
+            }
+            catch (System.Exception exc)
+            {
+              Log.Warning("Failed to add a new StoreFront due to the name existed in the database");
+              Console.WriteLine(exc.Message);
+              Console.WriteLine("Please press Enter to continue");
+              Console.ReadLine();
+              return "AddNewStoreFront";
+            }
           }
         default:
           Console.WriteLine("Please input a valid resonse!");

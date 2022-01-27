@@ -53,9 +53,23 @@ namespace UI
         case "0":
           return "Exit";
         case "S":
-          ListCustomersMenu._currentCustomer.Name = "";
-          ListStoresMenu._currentStoreFront.Name = "";
-          return "MainMenu";
+          if (ListCustomersMenu._currentCustomer.Name != "")
+          {
+            Log.Information($"{ListCustomersMenu._currentCustomer.Name} signed out as a Customer");
+            ListCustomersMenu._currentCustomer.Name = "";
+            return "MainMenu";
+          }
+          else if (ListStoresMenu._currentStoreFront.Name != "")
+          {
+            Log.Information($"{ListStoresMenu._currentStoreFront.Name} signed out as a Store Manager");
+            ListStoresMenu._currentStoreFront.Name = "";
+            return "MainMenu";
+          }
+          else
+          {
+            Log.Information("User is trying to Signout without Login!");
+            goto default;
+          }
         case "1":
           if (ListCustomersMenu._currentCustomer.Name != "")
           {
@@ -86,6 +100,7 @@ namespace UI
         case "3":
           if (ListCustomersMenu._currentCustomer.Name != "" || ListStoresMenu._currentStoreFront.Name != "")
           {
+            Log.Information("Customer is logged in but tried to log in as another one");
             goto default;
           }
           else
@@ -95,6 +110,8 @@ namespace UI
         case "4":
           if (ListCustomersMenu._currentCustomer.Name != "" || ListStoresMenu._currentStoreFront.Name != "")
           {
+
+            Log.Information("Store manager is logged in but tried to log in as another one");
             goto default;
           }
           else

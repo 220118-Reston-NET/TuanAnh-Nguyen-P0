@@ -10,7 +10,7 @@ namespace UI
     {
       _listCusBL = p_listCusBL;
     }
-    private static Customer _customer = new Customer();
+    // private static Customer _customer = new Customer();
     private List<Customer> _listFilteredCus = new List<Customer>();
     public void Display()
     {
@@ -35,10 +35,11 @@ namespace UI
 
         case "1":
           Console.WriteLine("Please enter customer name:");
-          _customer.Name = Console.ReadLine();
-          _listFilteredCus = _listCusBL.SearchCustomersByName(_customer.Name);
+          string _inputName = Console.ReadLine();
+          _listFilteredCus = _listCusBL.SearchCustomersByName(_inputName);
 
-          Console.WriteLine("Here are all customer that have name contains '" + _customer.Name + "'");
+          Log.Information("User just searched for a customer that have name contains: '" + _inputName + "'");
+          Console.WriteLine("Here are all customer that have name contains '" + _inputName + "'");
           foreach (var cus in _listFilteredCus)
           {
             Console.WriteLine(cus);

@@ -94,17 +94,31 @@ namespace UI
           }
           else
           {
-            //Add product to the database
-            _newProduct.StoreID = ListStoresMenu._currentStoreFront.StoreID;
-            _prodBL.AddProduct(_newProduct);
-            Console.WriteLine("Added new product succesfully!");
-            Console.WriteLine("Returning back to the previous menu!");
-            System.Threading.Thread.Sleep(2000);
+            try
+            {
+              //Add product to the database
+              _newProduct.StoreID = ListStoresMenu._currentStoreFront.StoreID;
+              Log.Information($"Adding new product for {ListStoresMenu._currentStoreFront.Name} " + _newProduct);
+              _prodBL.AddProduct(_newProduct);
+              Log.Information("Added new product succesfully");
+              Console.WriteLine("Added new product succesfully!");
+              Console.WriteLine("Returning back to the previous menu!");
+              System.Threading.Thread.Sleep(2000);
 
-            //Clear the input information after saved and create a new one
-            _newProduct = new Products();
-            return "InventoryMenu";
+              //Clear the input information after saved and create a new one
+              _newProduct = new Products();
+              return "InventoryMenu";
+            }
+            catch (System.Exception exc)
+            {
+              Log.Warning("Failed to add a new product due to the product existed in the database");
+              Console.WriteLine(exc.Message);
+              Console.WriteLine("Please press Enter to continue");
+              Console.ReadLine();
+              return "AddNewProduct";
+            }
           }
+
         default:
           Console.WriteLine("Please input a valid resonse!");
           Console.WriteLine("Please press Enter to continue");

@@ -13,5 +13,10 @@
     "StoreID": "7d5047be-7982-4293-adec-61e37142a0a9",
     "Name": "Wow",
     "Address": "California"
+  },
+  {
+    "StoreID": "5f1e0b78-31f4-4f0f-8904-6f9a489e7f09",
+    "Name": "Kiv",
+    "Address": "Florida"
   }
 ]

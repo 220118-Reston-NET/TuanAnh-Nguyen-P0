@@ -26,5 +26,12 @@
     "Address": "Texas",
     "Email": "asv@as.a",
     "PhoneNumber": "1234567890"
+  },
+  {
+    "Name": "Kiraa",
+    "CustomerID": "57632bfc-72d9-4e03-963e-2ec9da342f5e",
+    "Address": "1251525",
+    "Email": "amspv@v.av",
+    "PhoneNumber": "1234567890"
   }
 ]

@@ -101,14 +101,28 @@ namespace UI
           else
           {
             //Add customer to the database
-            _cusBL.AddCustomer(_newCustomer);
-            Console.WriteLine("Added new customer succesfully!");
-            Console.WriteLine("Returning back to the main menu!");
-            System.Threading.Thread.Sleep(2000);
+            try
+            {
+              Log.Information("Adding a new customer:\n" + _newCustomer);
+              _cusBL.AddCustomer(_newCustomer);
+              Log.Information("Added new customer to the database");
+              Console.WriteLine("Added new customer succesfully!");
 
-            //Clear the input information after saved and create a new one
-            _newCustomer = new Customer();
-            return "MainMenu";
+              //Clear the input information after saved and create a new one
+              _newCustomer = new Customer();
+              Console.WriteLine("Returning back to the main menu!");
+              System.Threading.Thread.Sleep(2000);
+
+              return "MainMenu";
+            }
+            catch (System.Exception exc)
+            {
+              Log.Warning("Failed to add a new customer due to the name existed in the database");
+              Console.WriteLine(exc.Message);
+              Console.WriteLine("Please press Enter to continue");
+              Console.ReadLine();
+              return "AddNewCustomer";
+            }
           }
         default:
           Console.WriteLine("Please input a valid resonse!");

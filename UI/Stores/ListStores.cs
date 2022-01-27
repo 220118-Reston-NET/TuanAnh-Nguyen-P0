@@ -23,7 +23,7 @@ namespace UI
           Console.WriteLine("- " + _listStores[i].Name + " (" + _listStores[i].Address + ")");
         }
         Console.WriteLine("-----");
-        Console.WriteLine("Please enter the store name that you want to look at. Ex: '" + _listStores[0].Name + "'");
+        Console.WriteLine("Please enter the store name that you want to login. Ex: '" + _listStores[0].Name + "'");
       }
       else
       {
@@ -53,6 +53,7 @@ namespace UI
             if (_userInput == _listStores[i].Name)
             {
               _currentStoreFront = _listStores[i];
+              Log.Information("User just logged in as a Store Manager: " + _currentStoreFront.Name);
               Console.WriteLine("Logging in as " + _currentStoreFront.Name);
               Console.WriteLine("Returning to the main menu...");
               System.Threading.Thread.Sleep(2000);

@@ -48,5 +48,10 @@ namespace Model
       Desc = "";
       Quantity = 0;
     }
+
+    public override string ToString()
+    {
+      return $"Name: {Name}\nPrice: {Price}\nDes: {Desc}\nQuantity: {Quantity}";
+    }
   }
 }

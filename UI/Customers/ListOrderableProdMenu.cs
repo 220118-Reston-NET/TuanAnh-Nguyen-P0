@@ -17,7 +17,7 @@ namespace UI
     private static LineItems _lineItem;
     public void DisplayAllProducts()
     {
-      _listProducts = _listProdBL.GetAllProductsFromStore(PlaceNewOrderMenu._selectedStore.StoreID);
+      _listProducts = _listProdBL.GetAllInStockProductsFromStore(PlaceNewOrderMenu._selectedStore.StoreID);
       if (_listProducts.Count() > 0)
       {
         Console.WriteLine("Here are all products in the :" + PlaceNewOrderMenu._selectedStore.Name);
@@ -118,8 +118,14 @@ namespace UI
           else
           {
             //Placing order
+            Log.Information("Adding a new order: ");
+            foreach (var item in _cart)
+            {
+              Log.Information("" + item);
+            }
+            Log.Information($"Under {ListCustomersMenu._currentCustomer.Name} to store: {PlaceNewOrderMenu._selectedStore.Name}");
             _orderBL.PlaceOrder(_cart, PlaceNewOrderMenu._selectedStore.StoreID, ListCustomersMenu._currentCustomer.CustomerID);
-
+            Log.Information("Added new order successfully");
             Console.WriteLine("Placed Order successfully!");
             Console.WriteLine("Returning to the previous menu...");
             System.Threading.Thread.Sleep(2000);

@@ -12,7 +12,24 @@ namespace BL
     }
     public Products AddProduct(Products p_prod)
     {
+      List<Products> _listProducts = _repo.GetAllProducts();
+      for (int i = 0; i < _listProducts.Count(); i++)
+      {
+        if (_listProducts[i].Name == p_prod.Name && _listProducts[i].StoreID == p_prod.StoreID)
+        {
+          throw new Exception("Cannot add new produt due to this product is already in the store database!");
+        }
+      }
+
       return _repo.AddProduct(p_prod);
+    }
+
+    public List<Products> GetAllInStockProductsFromStore(string _storeID)
+    {
+      List<Products> _filterList = new List<Products>();
+      _filterList = _repo.GetAllProductsFromStore(_storeID).Where(prod => prod.Quantity > 0).ToList();
+
+      return _filterList;
     }
 
     public List<Products> GetAllProducts()

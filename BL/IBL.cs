@@ -21,6 +21,7 @@ namespace BL
     Products SaveProduct(Products p_prod);
     List<Products> GetAllProducts();
     List<Products> GetAllProductsFromStore(string _storeID);
+    List<Products> GetAllInStockProductsFromStore(string _storeID);
     void SubtractProduct(string p_pID, int p_quantity, string _storeID);
   }
 

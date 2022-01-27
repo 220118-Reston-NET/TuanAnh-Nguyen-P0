@@ -95,7 +95,9 @@ namespace UI
           else
           {
             //Save product to the database after modified
+            Log.Information("Save new product information to the database: " + _prod);
             _prodBL.SaveProduct(_prod);
+            Log.Information("Saved the product succesfully!");
             Console.WriteLine("Saved the product succesfully!");
             Console.WriteLine("Returning back to the previous menu!");
             System.Threading.Thread.Sleep(2000);
