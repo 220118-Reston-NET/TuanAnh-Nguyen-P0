@@ -27,7 +27,7 @@ namespace BL
     public List<Products> GetAllInStockProductsFromStore(string _storeID)
     {
       List<Products> _filterList = new List<Products>();
-      _filterList = _repo.GetAllProductsFromStore(_storeID).Where(prod => prod.Quantity > 0).ToList();
+      _filterList = _repo.GetAllProducts().Where(prod => prod.Quantity > 0 && prod.StoreID == _storeID).ToList();
 
       return _filterList;
     }
@@ -39,7 +39,10 @@ namespace BL
 
     public List<Products> GetAllProductsFromStore(string _storeID)
     {
-      return _repo.GetAllProductsFromStore(_storeID);
+      List<Products> _filterList = new List<Products>();
+      _filterList = _repo.GetAllProducts().Where(prod => prod.StoreID == _storeID).ToList();
+
+      return _filterList;
     }
 
     public Products SaveProduct(Products p_prod)

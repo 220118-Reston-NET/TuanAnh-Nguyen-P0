@@ -11,44 +11,27 @@ namespace DL
     public List<Orders> GetAllOrders()
     {
       string _path = _filepath + "Orders.json";
-      string _jsonString = File.ReadAllText(_path);
       List<Orders> _listOrders = new List<Orders>();
+      //Check if the JSON file is exists.
+      if (File.Exists(_path))
+      {
+        //Check if the file have values
+        if (new FileInfo(_path).Length == 0)
+        {
+          return _listOrders;
+        }
+        else
+        {
+          string _jsonString2 = File.ReadAllText(_path);
 
-      _listOrders = JsonSerializer.Deserialize<List<Orders>>(_jsonString);
-
+          _listOrders = JsonSerializer.Deserialize<List<Orders>>(_jsonString);
+        }
+      }
+      else
+      {
+        return _listOrders;
+      }
       return _listOrders;
-    }
-
-    public List<Orders> GetAllOrdersByCustomerID(string p_cusID)
-    {
-      List<Orders> _listOrders = GetAllOrders();
-      List<Orders> _customerOrders = new List<Orders>();
-
-      for (int i = 0; i < _listOrders.Count(); i++)
-      {
-        if (_listOrders[i].CustomerID == p_cusID)
-        {
-          _customerOrders.Add(_listOrders[i]);
-        }
-      }
-
-      return _customerOrders;
-    }
-
-    public List<Orders> GetAllOrdersByStoreID(string p_storeID)
-    {
-      List<Orders> _listOrders = GetAllOrders();
-      List<Orders> _storeOrders = new List<Orders>();
-
-      for (int i = 0; i < _listOrders.Count(); i++)
-      {
-        if (_listOrders[i].StoreID == p_storeID)
-        {
-          _storeOrders.Add(_listOrders[i]);
-        }
-      }
-
-      return _storeOrders;
     }
 
     public Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID)

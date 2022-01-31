@@ -74,42 +74,6 @@ namespace DL
       return _listProds;
     }
 
-    public List<Products> GetAllProductsFromStore(string _storeID)
-    {
-      string _path = _filepath + "Product.json";
-      List<Products> _listProds = new List<Products>();
-      //Check if the JSON file is exists.
-      if (File.Exists(_path))
-      {
-        //Check if the file have values
-        if (new FileInfo(_path).Length == 0)
-        {
-          return _listProds;
-        }
-        else
-        {
-          string _jsonString2 = File.ReadAllText(_path);
-
-          _listProds = JsonSerializer.Deserialize<List<Products>>(_jsonString2);
-          //Get only the Product that have the given storeID
-          List<Products> _selectedProducts = new List<Products>();
-          for (int i = 0; i < _listProds.Count(); i++)
-          {
-            if (_listProds[i].StoreID == _storeID)
-            {
-              _selectedProducts.Add(_listProds[i]);
-            }
-          }
-
-          return _selectedProducts;
-        }
-      }
-      else
-      {
-        return _listProds;
-      }
-    }
-
     public Products SaveProduct(Products p_prod)
     {
       string _path = _filepath + "Product.json";
