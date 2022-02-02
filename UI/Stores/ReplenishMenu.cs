@@ -6,21 +6,27 @@ namespace UI
   public class ReplenishMenu : IMenu
   {
     private IProductBL _listProdBL;
-    public ReplenishMenu(IProductBL p_listProdBL)
+    private IInventoryBL _listInvenBL;
+    public ReplenishMenu(IProductBL p_listProdBL, IInventoryBL p_listInvenBL)
     {
       _listProdBL = p_listProdBL;
+      _listInvenBL = p_listInvenBL;
     }
     private List<Products> _listProducts;
-    public static Products _selectedReplProd = new Products();
+    private List<Inventory> _listInvens;
+    public static string _selectedReplProdID = "";
     public void DisplayAllProducts()
     {
-      _listProducts = _listProdBL.GetAllProductsFromStore(ListStoresMenu._currentStoreFront.StoreID);
+      _listProducts = _listProdBL.GetAllProducts();
+      _listInvens = _listInvenBL.GetAllProductsFromStore(ListStoresMenu._currentStoreFront.StoreID);
+      string _prodName;
       if (_listProducts.Count() > 0)
       {
         Console.WriteLine("Here are all products in your store:");
-        for (int i = 0; i < _listProducts.Count(); i++)
+        for (int i = 0; i < _listInvens.Count(); i++)
         {
-          Console.WriteLine("- " + _listProducts[i].Name + " (" + _listProducts[i].Quantity + " left)");
+          _prodName = _listProducts.Where(p => p.ProductID == _listInvens[i].ProductID).First().Name;
+          Console.WriteLine("- " + _prodName + " (" + _listInvens[i].Quantity + " left)");
         }
         Console.WriteLine("-----");
         Console.WriteLine("Please enter the product name that you want to look at. Ex: '" + _listProducts[0].Name + "'");
@@ -52,8 +58,9 @@ namespace UI
           {
             if (_userInput == _listProducts[i].Name)
             {
+
               Log.Information("User just choose to edit the product: " + _listProducts[i]);
-              _selectedReplProd = _listProducts[i];
+              _selectedReplProdID = _listProducts[i].ProductID;
               return "EditProduct";
             }
           }

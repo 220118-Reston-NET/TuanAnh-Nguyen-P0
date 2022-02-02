@@ -35,9 +35,11 @@ namespace UI
         Console.WriteLine("---If you are already a part of our shopping mall, use options below to sign in---");
         Console.WriteLine("[3] - Customer");
         Console.WriteLine("[4] - Store Manager");
+        Console.WriteLine("---Mall Department Only---");
+        Console.WriteLine("[5] - Product Management");
       }
       Console.WriteLine("---You also can use this option below to search for:");
-      Console.WriteLine("[5] - Customer");
+      Console.WriteLine("[9] - Customer");
       Console.WriteLine("-------------");
       Console.WriteLine("[0] - Exit");
       Console.WriteLine("What would you like to do?");
@@ -118,8 +120,16 @@ namespace UI
           {
             return "ListStores";
           }
-
         case "5":
+          if (ListCustomersMenu._currentCustomer.Name != "" || ListStoresMenu._currentStoreFront.Name != "")
+          {
+            goto default;
+          }
+          else
+          {
+            return "MallMenu";
+          }
+        case "9":
           return "SearchCustomerMenu";
         default:
           Console.WriteLine("Please input a valid resonse!");

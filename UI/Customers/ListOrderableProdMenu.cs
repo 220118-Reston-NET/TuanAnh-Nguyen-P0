@@ -5,25 +5,29 @@ namespace UI
 {
   public class ListOrderableProdMenu : IMenu
   {
-    private IProductBL _listProdBL;
+    private IInventoryBL _listInvenBL;
     private IOrderBL _orderBL;
-    public ListOrderableProdMenu(IOrderBL p_order, IProductBL p_listProdBL)
+    public ListOrderableProdMenu(IOrderBL p_order, IInventoryBL p_listInvenBL)
     {
       _orderBL = p_order;
-      _listProdBL = p_listProdBL;
+      _listInvenBL = p_listInvenBL;
     }
-    private static List<Products> _listProducts;
+    private static List<Products> _listProducts = new List<Products>();
+    private static List<Inventory> _listInventorys = new List<Inventory>();
     private static List<LineItems> _cart = new List<LineItems>();
     private static LineItems _lineItem;
     public void DisplayAllProducts()
     {
-      _listProducts = _listProdBL.GetAllInStockProductsFromStore(PlaceNewOrderMenu._selectedStore.StoreID);
+      _listProducts = _listInvenBL.GetAllInStockProductsDetailFromStore(PlaceNewOrderMenu._selectedStore.StoreID);
+      _listInventorys = _listInvenBL.GetAllProductsFromStore(PlaceNewOrderMenu._selectedStore.StoreID);
+      int quantity = 0;
       if (_listProducts.Count() > 0)
       {
         Console.WriteLine("Here are all products in the :" + PlaceNewOrderMenu._selectedStore.Name);
         for (int i = 0; i < _listProducts.Count(); i++)
         {
-          Console.WriteLine("- " + _listProducts[i].Name + " - $" + _listProducts[i].Price + " (" + _listProducts[i].Quantity + " left)");
+          quantity = _listInventorys.Where(p => p.ProductID == _listProducts[i].ProductID).First().Quantity;
+          Console.WriteLine("- " + _listProducts[i].Name + " - $" + _listProducts[i].Price + " (" + quantity + " left)");
         }
         Console.WriteLine("-----");
         Console.WriteLine("Please enter the product name that you want to buy. Ex: '" + _listProducts[0].Name + "'");
@@ -54,6 +58,7 @@ namespace UI
 
     public Boolean AddToCart(LineItems p_lineItems)
     {
+      int quantity = _listInventorys.Where(p => p.ProductID == p_lineItems.ProductID).First().Quantity;
       if (_cart.Count() == 0)
       {
         _cart.Add(p_lineItems);
@@ -66,7 +71,7 @@ namespace UI
         {
           if (_listProducts[i].ProductID == p_lineItems.ProductID)
           {
-            _currentQuantity = _listProducts[i].Quantity;
+            _currentQuantity = quantity;
           }
         }
 
@@ -139,11 +144,12 @@ namespace UI
             if (_userInput == _listProducts[i].Name)
             {
               //Check if the quantity customer want to buy is more than the instock products
+              int quantity = _listInventorys.Where(p => p.ProductID == _listProducts[i].ProductID).First().Quantity;
 
               Console.WriteLine("How many do you want to buy:");
               string _userInputQuantity = Console.ReadLine();
 
-              while (!_userInputQuantity.All(Char.IsDigit) || _userInputQuantity == "" || Convert.ToInt32(_userInputQuantity) > _listProducts[i].Quantity)
+              while (!_userInputQuantity.All(Char.IsDigit) || _userInputQuantity == "" || Convert.ToInt32(_userInputQuantity) > quantity || Convert.ToInt32(_userInputQuantity) == 0)
               {
                 Console.WriteLine("The amount have to be a number, less than the current stock and should not be empty!");
                 Console.WriteLine("Please enter again:");

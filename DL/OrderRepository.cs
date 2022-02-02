@@ -24,7 +24,7 @@ namespace DL
         {
           string _jsonString2 = File.ReadAllText(_path);
 
-          _listOrders = JsonSerializer.Deserialize<List<Orders>>(_jsonString);
+          _listOrders = JsonSerializer.Deserialize<List<Orders>>(_jsonString2);
         }
       }
       else
@@ -51,11 +51,11 @@ namespace DL
       _newOrder.ListLineItems = p_lineItems;
 
       int _totalPrice = 0;
-      ProductRepository _subtract = new ProductRepository();
+      InventoryRepository _subtract = new InventoryRepository();
       for (int i = 0; i < p_lineItems.Count(); i++)
       {
         _totalPrice += p_lineItems[i].Price * p_lineItems[i].Quantity;
-        _subtract.SubtractProduct(p_lineItems[i].ProductID, p_lineItems[i].Quantity);
+        _subtract.SubtractProduct(p_lineItems[i].ProductID, _storeID, p_lineItems[i].Quantity);
       }
       _newOrder.TotalPrice = _totalPrice;
 

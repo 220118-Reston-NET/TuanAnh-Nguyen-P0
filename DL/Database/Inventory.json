@@ -1,0 +1,32 @@
+[
+  {
+    "InventoryID": "2885ef82-c1d0-4e6c-bbbc-b23207fbe660",
+    "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a",
+    "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
+    "Quantity": 11
+  },
+  {
+    "InventoryID": "f876dfdf-93e7-429a-ad8e-99ac305d7154",
+    "ProductID": "e82bf476-0659-41d3-938f-7ec95453c658",
+    "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
+    "Quantity": 6
+  },
+  {
+    "InventoryID": "502d949b-e44b-4710-b1ce-8d83501ab886",
+    "ProductID": "14707fe6-846d-4890-8dd7-39daaea36fd5",
+    "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
+    "Quantity": 20
+  },
+  {
+    "InventoryID": "39e6a393-1ad9-42cd-9adc-dfbde8cf0383",
+    "ProductID": "e82bf476-0659-41d3-938f-7ec95453c658",
+    "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
+    "Quantity": 4
+  },
+  {
+    "InventoryID": "bfa9a864-02c9-4c46-a9a9-de8cbf3a9076",
+    "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a",
+    "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
+    "Quantity": 5
+  }
+]

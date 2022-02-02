@@ -43,7 +43,7 @@ while (repeat)
       break;
     case "ListOrderableProdMenu":
       Log.Information("Displaying the List All The Available Product to Order Menu");
-      menu = new ListOrderableProdMenu(new OrderBL(new OrderRepository()), new ProductBL(new ProductRepository()));
+      menu = new ListOrderableProdMenu(new OrderBL(new OrderRepository()), new InventoryBL(new InventoryRepository()));
       break;
     case "ListCustomerOrdersMenu":
       Log.Information("Displaying the List All Customer Orders Menu");
@@ -55,21 +55,39 @@ while (repeat)
       Log.Information("Displaying the Inventory Menu");
       menu = new InventoryMenu();
       break;
-    case "AddNewProduct":
-      Log.Information("Displaying the Add New Product Menu");
-      menu = new AddNewProductMenu(new ProductBL(new ProductRepository()));
+    case "ImportNewProduct":
+      Log.Information("Displaying the Import New Product Menu");
+      menu = new ListAllMallProdMenu(new ProductBL(new ProductRepository()), new InventoryBL(new InventoryRepository()));
       break;
     case "ReplenishInventory":
       Log.Information("Displaying the Replenish Inventory Menu");
-      menu = new ReplenishMenu(new ProductBL(new ProductRepository()));
+      menu = new ReplenishMenu(new ProductBL(new ProductRepository()), new InventoryBL(new InventoryRepository()));
       break;
     case "EditProduct":
-      Log.Information("Displaying the Edit Product Menu");
-      menu = new EditProductMenu(new ProductBL(new ProductRepository()));
+      Log.Information("Displaying the Replenish Product Menu");
+      menu = new EditProductMenu(new ProductBL(new ProductRepository()), new InventoryBL(new InventoryRepository()));
       break;
     case "ListStoreOrdersMenu":
       Log.Information("Displaying the List of All Stores Menu");
       menu = new ListStoreOrdersMenu(new OrderBL(new OrderRepository()));
+      break;
+
+    //Mall Department
+    case "MallMenu":
+      Log.Information("Displaying the Mall Department Menu");
+      menu = new MallMenu();
+      break;
+    case "AddNewProductMallMenu":
+      Log.Information("Displaying the Add New Product from Mall Department Menu");
+      menu = new AddNewProductMallMenu(new ProductBL(new ProductRepository()));
+      break;
+    case "ListAllMallProductsMenu":
+      Log.Information("Displaying the All Products from Mall Department Menu");
+      menu = new ListAllMallProductMenu(new ProductBL(new ProductRepository()), new InventoryBL(new InventoryRepository()));
+      break;
+    case "EditProductMallMenu":
+      Log.Information("Displaying the Product Modifier from Mall Department Menu");
+      menu = new EditProductMallMenu(new ProductBL(new ProductRepository()));
       break;
 
     //Search Menu

@@ -91,14 +91,12 @@ namespace DL
           string _jsonString2 = File.ReadAllText(_path);
 
           _listPreProds = JsonSerializer.Deserialize<List<Products>>(_jsonString2);
-          //Get only the Product that have the given storeID
-          // List<Products> _selectedProducts = new List<Products>();
+
           for (int i = 0; i < _listPreProds.Count(); i++)
           {
             if (_listPreProds[i].ProductID == p_prod.ProductID)
             {
               _listPreProds[i].Name = p_prod.Name;
-              _listPreProds[i].Quantity = p_prod.Quantity;
               _listPreProds[i].Price = p_prod.Price;
               _listPreProds[i].Desc = p_prod.Desc;
               break;
@@ -113,25 +111,6 @@ namespace DL
       {
         return p_prod;
       }
-    }
-
-    public void SubtractProduct(string p_pID, int p_quantity)
-    {
-      string _path = _filepath + "Product.json";
-
-      List<Products> _listProds = GetAllProducts();
-
-      for (int i = 0; i < _listProds.Count(); i++)
-      {
-        if (_listProds[i].ProductID == p_pID)
-        {
-          _listProds[i].Quantity -= p_quantity;
-          break;
-        }
-      }
-
-      string _jsonString2 = JsonSerializer.Serialize(_listProds, new JsonSerializerOptions { WriteIndented = true });
-      File.WriteAllText(_path, _jsonString2);
     }
   }
 }

@@ -20,9 +20,7 @@ namespace BL
     Products AddProduct(Products p_prod);
     Products SaveProduct(Products p_prod);
     List<Products> GetAllProducts();
-    List<Products> GetAllProductsFromStore(string _storeID);
-    List<Products> GetAllInStockProductsFromStore(string _storeID);
-    void SubtractProduct(string p_pID, int p_quantity, string _storeID);
+    Products GetProductDetail(string p_prodId);
   }
 
   public interface IOrderBL
@@ -31,5 +29,14 @@ namespace BL
     List<Orders> GetAllOrdersByCustomerID(string p_cusID);
     List<Orders> GetAllOrdersByStoreID(string p_storeID);
     List<Orders> GetAllOrders();
+  }
+
+  public interface IInventoryBL
+  {
+    Inventory ImportProduct(Inventory p_prod);
+    Inventory GetProductDetail(string p_prodId, string p_storeID);
+    List<Inventory> GetAllProductsFromStore(string p_storeID);
+    List<Products> GetAllInStockProductsDetailFromStore(string p_storeID);
+    Inventory ReplenishProduct(string p_invenID, int p_quantity);
   }
 }

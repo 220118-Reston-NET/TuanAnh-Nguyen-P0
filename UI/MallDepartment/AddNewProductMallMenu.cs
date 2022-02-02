@@ -3,21 +3,20 @@ using Model;
 
 namespace UI
 {
-  public class AddNewProductMenu : IMenu
+  public class AddNewProductMallMenu : IMenu
   {
     private static Products _newProduct = new Products();
     private IProductBL _prodBL;
-    public AddNewProductMenu(IProductBL p_prod)
+    public AddNewProductMallMenu(IProductBL p_prod)
     {
       _prodBL = p_prod;
     }
     public void Display()
     {
-      Console.WriteLine("Enter new product for store information");
+      Console.WriteLine("Enter new product information");
       Console.WriteLine("[1] - Name: " + _newProduct.Name);
-      Console.WriteLine("[2] - Quantity: " + _newProduct.Quantity);
-      Console.WriteLine("[3] - Price: " + _newProduct.Price);
-      Console.WriteLine("[4] - Description: " + _newProduct.Desc);
+      Console.WriteLine("[2] - Price: " + _newProduct.Price);
+      Console.WriteLine("[3] - Description: " + _newProduct.Desc);
       Console.WriteLine("-----");
       Console.WriteLine("[9] - Save & Go back");
       Console.WriteLine("[0] - Go back");
@@ -31,7 +30,7 @@ namespace UI
       switch (_userInput)
       {
         case "0":
-          return "InventoryMenu";
+          return "MallMenu";
         case "1":
           Console.WriteLine("Please enter the product name:");
           string _userInputName = Console.ReadLine();
@@ -44,34 +43,21 @@ namespace UI
             _userInputName = Console.ReadLine();
           }
           _newProduct.Name = _userInputName;
-          return "AddNewProduct";
+          return "AddNewProductMallMenu";
         case "2":
-          Console.WriteLine("Please enter the quantity:");
-          string _userInputQuantity = Console.ReadLine();
-
-          //Check if the input is empty
-          while (!_userInputQuantity.All(Char.IsDigit) || _userInputQuantity == "")
-          {
-            Console.WriteLine("Quantity have to be a number and should not be empty!");
-            Console.WriteLine("Please enter the quantity again:");
-            _userInputQuantity = Console.ReadLine();
-          }
-          _newProduct.Quantity = Convert.ToInt32(_userInputQuantity);
-          return "AddNewProduct";
-        case "3":
           Console.WriteLine("Please enter the product price:");
           string _userInputPrice = Console.ReadLine();
 
           //Check if the input is empty
-          while (!_userInputPrice.All(Char.IsDigit) || _userInputPrice == "")
+          while (!_userInputPrice.All(Char.IsDigit) || _userInputPrice == "" || Convert.ToInt32(_userInputPrice) == 0)
           {
             Console.WriteLine("Price have to be a number and should not be empty!");
             Console.WriteLine("Please enter the price again:");
             _userInputPrice = Console.ReadLine();
           }
           _newProduct.Price = Convert.ToInt32(_userInputPrice);
-          return "AddNewProduct";
-        case "4":
+          return "AddNewProductMallMenu";
+        case "3":
           Console.WriteLine("Please enter the product description:");
           string _userInputDesc = Console.ReadLine();
 
@@ -83,22 +69,21 @@ namespace UI
             _userInputDesc = Console.ReadLine();
           }
           _newProduct.Desc = _userInputDesc;
-          return "AddNewProduct";
+          return "AddNewProductMallMenu";
         case "9":
           //Check if all information filled completely
-          if (_newProduct.Name == "" || _newProduct.Quantity == 0 || _newProduct.Price == 0 || _newProduct.Desc == "")
+          if (_newProduct.Name == "" || _newProduct.Price == 0 || _newProduct.Desc == "")
           {
             Console.WriteLine("You need to fill every information above before saving!");
             System.Threading.Thread.Sleep(2000);
-            return "AddNewProduct";
+            return "AddNewProductMallMenu";
           }
           else
           {
             try
             {
               //Add product to the database
-              _newProduct.StoreID = ListStoresMenu._currentStoreFront.StoreID;
-              Log.Information($"Adding new product for {ListStoresMenu._currentStoreFront.Name} " + _newProduct);
+              Log.Information($"Adding new product: " + _newProduct);
               _prodBL.AddProduct(_newProduct);
               Log.Information("Added new product succesfully");
               Console.WriteLine("Added new product succesfully!");
@@ -107,15 +92,15 @@ namespace UI
 
               //Clear the input information after saved and create a new one
               _newProduct = new Products();
-              return "InventoryMenu";
+              return "MallMenu";
             }
             catch (System.Exception exc)
             {
-              Log.Warning("Failed to add a new product due to the product existed in the database");
+              Log.Warning("Failed to add a new product due tot the product existed in he database");
               Console.WriteLine(exc.Message);
               Console.WriteLine("Please press Enter to continue");
               Console.ReadLine();
-              return "AddNewProduct";
+              return "AddNewProductMallMenu";
             }
           }
 
@@ -123,7 +108,7 @@ namespace UI
           Console.WriteLine("Please input a valid resonse!");
           Console.WriteLine("Please press Enter to continue");
           Console.ReadLine();
-          return "AddNewProduct";
+          return "AddNewProductMallMenu";
       }
     }
   }

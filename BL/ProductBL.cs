@@ -15,21 +15,13 @@ namespace BL
       List<Products> _listProducts = _repo.GetAllProducts();
       for (int i = 0; i < _listProducts.Count(); i++)
       {
-        if (_listProducts[i].Name == p_prod.Name && _listProducts[i].StoreID == p_prod.StoreID)
+        if (_listProducts[i].Name == p_prod.Name)
         {
-          throw new Exception("Cannot add new produt due to this product is already in the store database!");
+          throw new Exception("Cannot add new product due to this product is already in the store database!");
         }
       }
 
       return _repo.AddProduct(p_prod);
-    }
-
-    public List<Products> GetAllInStockProductsFromStore(string _storeID)
-    {
-      List<Products> _filterList = new List<Products>();
-      _filterList = _repo.GetAllProducts().Where(prod => prod.Quantity > 0 && prod.StoreID == _storeID).ToList();
-
-      return _filterList;
     }
 
     public List<Products> GetAllProducts()
@@ -37,19 +29,16 @@ namespace BL
       return _repo.GetAllProducts();
     }
 
-    public List<Products> GetAllProductsFromStore(string _storeID)
+    public Products GetProductDetail(string p_prodId)
     {
-      List<Products> _filterList = new List<Products>();
-      _filterList = _repo.GetAllProducts().Where(prod => prod.StoreID == _storeID).ToList();
+      List<Products> _listProds = GetAllProducts();
 
-      return _filterList;
+      return _listProds.Where(p => p.ProductID == p_prodId).First();
     }
 
     public Products SaveProduct(Products p_prod)
     {
       return _repo.SaveProduct(p_prod);
     }
-
-    public void SubtractProduct(string p_pID, int p_quantity, string _storeID) { }
   }
 }

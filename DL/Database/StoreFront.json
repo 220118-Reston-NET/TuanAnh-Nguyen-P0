@@ -1,22 +1,12 @@
 [
   {
-    "StoreID": "f5451c05-ebfd-4ec0-b1b2-7afb7c0ade62",
-    "Name": "MallF0",
-    "Address": "Cali"
+    "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
+    "Name": "KiShoe",
+    "Address": "Zanesville, OH"
   },
   {
-    "StoreID": "8686ba8b-7859-4792-8623-e4c6b492c2c9",
-    "Name": "Ki",
-    "Address": "oansvasv"
-  },
-  {
-    "StoreID": "7d5047be-7982-4293-adec-61e37142a0a9",
-    "Name": "Wow",
-    "Address": "California"
-  },
-  {
-    "StoreID": "5f1e0b78-31f4-4f0f-8904-6f9a489e7f09",
-    "Name": "Kiv",
-    "Address": "Florida"
+    "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
+    "Name": "KiTech",
+    "Address": "Boston, MA"
   }
 ]

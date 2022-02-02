@@ -37,21 +37,18 @@ namespace Model
     //     }
     //   }
     // }
-    public int Quantity { get; set; }
     public string ProductID { get; set; }
-    public string StoreID { get; set; }
 
     public Products()
     {
       Name = "";
       Price = 0;
       Desc = "";
-      Quantity = 0;
     }
 
     public override string ToString()
     {
-      return $"Name: {Name}\nPrice: {Price}\nDes: {Desc}\nQuantity: {Quantity}";
+      return $"Name: {Name}\nPrice: {Price}\nDes: {Desc}";
     }
   }
 }
