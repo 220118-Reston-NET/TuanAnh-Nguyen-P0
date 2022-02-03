@@ -38,6 +38,7 @@ namespace Model
     public int Price { get; set; }
     public int Quantity { get; set; }
     public string ProductID { get; set; }
+    public string OrderID { get; set; }
 
     public LineItems()
     {

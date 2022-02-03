@@ -64,6 +64,11 @@ namespace DL
       return _listProds;
     }
 
+    public Products GetProductDetailByProductId(string p_prodID)
+    {
+      return GetAllProducts().Where(p => p.ProductID == p_prodID).First();
+    }
+
     public Products SaveProduct(Products p_prod)
     {
       string _sqlQuery = @"UPDATE Products 

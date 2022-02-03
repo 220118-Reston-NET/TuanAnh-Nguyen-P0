@@ -18,7 +18,7 @@ namespace DL
     Products AddProduct(Products p_prod);
     Products SaveProduct(Products p_prod);
     List<Products> GetAllProducts();
-    // void SubtractProduct(string p_pID, int p_quantity);
+    Products GetProductDetailByProductId(string p_prodID);
   }
   public interface IInventoryRepository
   {
@@ -34,5 +34,6 @@ namespace DL
   {
     Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID, int _totalPrice);
     List<Orders> GetAllOrders();
+    List<LineItems> GetAllLineItemsById(string p_orderID);
   }
 }

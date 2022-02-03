@@ -11,9 +11,11 @@ namespace DL
       _connectionString = p_connectionString;
     }
     private InventorySQLRepository _invenDL;
+    private ProductSQLRepository _prodDL;
     public List<Orders> GetAllOrders()
     {
-      string _sqlQuery = @"SELECT * FROM Orders";
+      string _sqlQuery = @"SELECT * FROM Orders
+                          ORDER BY createdAt";
       List<Orders> _listOrders = new List<Orders>();
 
       using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -32,7 +34,8 @@ namespace DL
             TotalPrice = reader.GetInt32(1),
             StoreID = reader.GetString(2),
             CustomerID = reader.GetString(3),
-            createdAt = reader.GetDateTime(4)
+            createdAt = reader.GetDateTime(4),
+            ListLineItems = GetAllLineItemsById(reader.GetString(0))
           });
         }
       }
@@ -87,6 +90,37 @@ namespace DL
       }
 
       return _newOrder;
+    }
+
+    public List<LineItems> GetAllLineItemsById(string p_orderID)
+    {
+      string _sqlQuery = @"SELECT * FROM LineItems
+                          WHERE orderID = @orderID";
+      List<LineItems> _listLineItems = new List<LineItems>();
+      _prodDL = new ProductSQLRepository(_connectionString);
+
+      using (SqlConnection conn = new SqlConnection(_connectionString))
+      {
+        conn.Open();
+
+        SqlCommand command = new SqlCommand(_sqlQuery, conn);
+        command.Parameters.AddWithValue("@orderID", p_orderID);
+
+        SqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+          _listLineItems.Add(new LineItems()
+          {
+            ProductID = reader.GetString(0),
+            OrderID = reader.GetString(1),
+            Quantity = reader.GetInt32(2),
+            ProductName = _prodDL.GetProductDetailByProductId(reader.GetString(0)).Name
+          });
+        }
+      }
+
+      return _listLineItems;
     }
   }
 }

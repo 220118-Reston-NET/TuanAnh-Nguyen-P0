@@ -78,6 +78,11 @@ namespace DL
       return _listProds;
     }
 
+    public Products GetProductDetailByProductId(string p_prodID)
+    {
+      throw new NotImplementedException();
+    }
+
     public Products SaveProduct(Products p_prod)
     {
       string _path = _filepath + "Product.json";

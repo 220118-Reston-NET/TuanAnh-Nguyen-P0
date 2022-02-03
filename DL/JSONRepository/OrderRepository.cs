@@ -8,6 +8,11 @@ namespace DL
     private string _filepath = "../DL/Database/";
     private string _jsonString;
 
+    public List<LineItems> GetAllLineItemsById(string p_orderID)
+    {
+      throw new NotImplementedException();
+    }
+
     public List<Orders> GetAllOrders()
     {
       string _path = _filepath + "Orders.json";
