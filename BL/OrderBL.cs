@@ -34,9 +34,9 @@ namespace BL
       return _customerOrders;
     }
 
-    public Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID)
+    public Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID, int _totalPrice)
     {
-      return _repo.PlaceOrder(p_lineItems, _storeID, _customerID);
+      return _repo.PlaceOrder(p_lineItems, _storeID, _customerID, _totalPrice);
     }
   }
 }

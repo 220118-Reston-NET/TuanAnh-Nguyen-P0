@@ -15,6 +15,10 @@ namespace DL
       //Get a random ID for Customer
       p_storef.StoreID = Guid.NewGuid().ToString();
 
+      //Get Date Time when created 
+      DateTime _createdAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+      p_storef.createdAt = _createdAt;
+
       //Check if the JSON file is exists.
       if (File.Exists(_path))
       {

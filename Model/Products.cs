@@ -2,6 +2,7 @@ namespace Model
 {
   public class Products
   {
+    public string ProductID { get; set; }
     // private string _Name;
     // public string Name
     // {
@@ -37,7 +38,7 @@ namespace Model
     //     }
     //   }
     // }
-    public string ProductID { get; set; }
+    public DateTime createdAt { get; set; }
 
     public Products()
     {

@@ -100,7 +100,7 @@ namespace DL
       return p_inven;
     }
 
-    public Inventory ReplenishProduct(string p_invenID, int p_quantity)
+    public void ReplenishProduct(string p_invenID, int p_quantity)
     {
       string _path = _filepath + "Inventory.json";
       List<Inventory> _listProds = GetAllProducts();
@@ -118,8 +118,6 @@ namespace DL
 
       string _jsonString2 = JsonSerializer.Serialize(_listProds, new JsonSerializerOptions { WriteIndented = true });
       File.WriteAllText(_path, _jsonString2);
-
-      return _filterInven;
     }
 
     public void SubtractProduct(string p_pID, string p_storeID, int p_quantity)

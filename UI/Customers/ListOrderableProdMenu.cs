@@ -16,6 +16,7 @@ namespace UI
     private static List<Inventory> _listInventorys = new List<Inventory>();
     private static List<LineItems> _cart = new List<LineItems>();
     private static LineItems _lineItem;
+    private static int _totalPrice;
     public void DisplayAllProducts()
     {
       _listProducts = _listInvenBL.GetAllInStockProductsDetailFromStore(PlaceNewOrderMenu._selectedStore.StoreID);
@@ -45,7 +46,7 @@ namespace UI
       }
       else
       {
-        int _totalPrice = 0;
+        _totalPrice = 0;
         Console.WriteLine("Your Cart:");
         for (int i = 0; i < _cart.Count(); i++)
         {
@@ -129,7 +130,7 @@ namespace UI
               Log.Information("" + item);
             }
             Log.Information($"Under {ListCustomersMenu._currentCustomer.Name} to store: {PlaceNewOrderMenu._selectedStore.Name}");
-            _orderBL.PlaceOrder(_cart, PlaceNewOrderMenu._selectedStore.StoreID, ListCustomersMenu._currentCustomer.CustomerID);
+            _orderBL.PlaceOrder(_cart, PlaceNewOrderMenu._selectedStore.StoreID, ListCustomersMenu._currentCustomer.CustomerID, _totalPrice);
             Log.Information("Added new order successfully");
             Console.WriteLine("Placed Order successfully!");
             Console.WriteLine("Returning to the previous menu...");

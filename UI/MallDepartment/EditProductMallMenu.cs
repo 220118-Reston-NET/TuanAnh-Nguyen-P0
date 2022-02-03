@@ -14,7 +14,7 @@ namespace UI
     public void Display()
     {
       _prodDetail = _prodBL.GetProductDetail(ListAllMallProductMenu._selectProductID);
-      Console.WriteLine("Information of the product that you want to replenish:");
+      Console.WriteLine("Information of the product that you want to modify:");
       Console.WriteLine("[1] - Name:        " + _prodDetail.Name);
       Console.WriteLine("[2] - Price:       " + _prodDetail.Price);
       Console.WriteLine("[3] - Description: " + _prodDetail.Desc);

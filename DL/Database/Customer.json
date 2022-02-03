@@ -1,23 +1,10 @@
 [
   {
-    "Name": "Kira",
-    "CustomerID": "f8fa9c82-67aa-4826-894d-2acc68c06e2e",
-    "Address": "Zanesville, OH",
-    "Email": "kira@gmail.com",
-    "PhoneNumber": "1234567890"
-  },
-  {
-    "Name": "Emily",
-    "CustomerID": "c7b5a157-ece8-4bcb-9e8a-32671e79b068",
-    "Address": "Dallas, TX",
-    "Email": "joasv@vmap.com",
-    "PhoneNumber": "9102837465"
-  },
-  {
-    "Name": "Kaison",
-    "CustomerID": "545d367e-5502-4d56-8caa-9dc7899d89fe",
-    "Address": "Dorchester, MA",
-    "Email": "kaison@vo.cc",
-    "PhoneNumber": "9182037456"
+    "CustomerID": "9acdd53b-f0f0-4e02-9212-26ef7c4af602",
+    "Name": "Kiraa",
+    "Address": "Ohio",
+    "Email": "ok@ka.c",
+    "PhoneNumber": "1234567890",
+    "createdAt": "2022-02-03T13:06:17.51868"
   }
 ]

@@ -44,9 +44,9 @@ namespace BL
       return _repo.ImportProduct(p_inven);
     }
 
-    public Inventory ReplenishProduct(string p_invenID, int p_quantity)
+    public void ReplenishProduct(string p_invenID, int p_quantity)
     {
-      return _repo.ReplenishProduct(p_invenID, p_quantity);
+      _repo.ReplenishProduct(p_invenID, p_quantity);
     }
 
   }

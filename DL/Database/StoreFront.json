@@ -2,11 +2,13 @@
   {
     "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
     "Name": "KiShoe",
-    "Address": "Zanesville, OH"
+    "Address": "Zanesville, OH",
+    "createdAt": "2022-02-02T13:06:17.51868"
   },
   {
     "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
     "Name": "KiTech",
-    "Address": "Boston, MA"
+    "Address": "Boston, MA",
+    "createdAt": "2022-02-03T13:06:17.51868"
   }
 ]

@@ -7,3 +7,4 @@ logs
 # macOS
 .DS_Store
 .vscode
+UI/appsettings.json

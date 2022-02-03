@@ -1,128 +1,11 @@
 [
   {
-    "OrderID": "6b6bab87-2071-4503-a51c-d833b34e8e3a",
+    "OrderID": "b671dd45-6244-4c12-9f2f-b2dbe500f901",
     "ListLineItems": [
       {
         "ProductName": "Laptop",
         "Price": 2899,
-        "Quantity": 2,
-        "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
-      },
-      {
-        "ProductName": "iPad",
-        "Price": 899,
-        "Quantity": 1,
-        "ProductID": "e82bf476-0659-41d3-938f-7ec95453c658"
-      }
-    ],
-    "CustomerID": "f8fa9c82-67aa-4826-894d-2acc68c06e2e",
-    "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
-    "OrderDate": "2/2/2022 3:47:56 PM",
-    "TotalPrice": 6697
-  },
-  {
-    "OrderID": "5651e59f-583e-4401-bb35-04337edc1042",
-    "ListLineItems": [
-      {
-        "ProductName": "Towel",
-        "Price": 20,
         "Quantity": 5,
-        "ProductID": "14707fe6-846d-4890-8dd7-39daaea36fd5"
-      }
-    ],
-    "CustomerID": "f8fa9c82-67aa-4826-894d-2acc68c06e2e",
-    "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
-    "OrderDate": "2/2/2022 3:50:06 PM",
-    "TotalPrice": 100
-  },
-  {
-    "OrderID": "d19ee6e4-ff30-4bc4-8b6c-0521542d4b26",
-    "ListLineItems": [
-      {
-        "ProductName": "Towel",
-        "Price": 20,
-        "Quantity": 5,
-        "ProductID": "14707fe6-846d-4890-8dd7-39daaea36fd5"
-      },
-      {
-        "ProductName": "iPad",
-        "Price": 899,
-        "Quantity": 4,
-        "ProductID": "e82bf476-0659-41d3-938f-7ec95453c658"
-      }
-    ],
-    "CustomerID": "c7b5a157-ece8-4bcb-9e8a-32671e79b068",
-    "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
-    "OrderDate": "2/2/2022 3:50:37 PM",
-    "TotalPrice": 3696
-  },
-  {
-    "OrderID": "80a665cb-ddfb-4681-9be0-b2b993129037",
-    "ListLineItems": [
-      {
-        "ProductName": "Laptop",
-        "Price": 2899,
-        "Quantity": 1,
-        "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
-      }
-    ],
-    "CustomerID": "545d367e-5502-4d56-8caa-9dc7899d89fe",
-    "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
-    "OrderDate": "2/2/2022 3:56:40 PM",
-    "TotalPrice": 2899
-  },
-  {
-    "OrderID": "1f4b0657-9c11-47ca-b03f-1202bc93ef80",
-    "ListLineItems": [
-      {
-        "ProductName": "Laptop",
-        "Price": 2899,
-        "Quantity": 1,
-        "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
-      }
-    ],
-    "CustomerID": "545d367e-5502-4d56-8caa-9dc7899d89fe",
-    "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
-    "OrderDate": "2/2/2022 3:56:52 PM",
-    "TotalPrice": 2899
-  },
-  {
-    "OrderID": "7411ef56-3b11-4759-8e00-b350af29d07f",
-    "ListLineItems": [
-      {
-        "ProductName": "Laptop",
-        "Price": 2899,
-        "Quantity": 1,
-        "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
-      }
-    ],
-    "CustomerID": "545d367e-5502-4d56-8caa-9dc7899d89fe",
-    "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
-    "OrderDate": "2/2/2022 3:57:55 PM",
-    "TotalPrice": 2899
-  },
-  {
-    "OrderID": "4586a78f-74c4-4812-bdf7-b14fe42c676c",
-    "ListLineItems": [
-      {
-        "ProductName": "Laptop",
-        "Price": 2899,
-        "Quantity": 1,
-        "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
-      }
-    ],
-    "CustomerID": "545d367e-5502-4d56-8caa-9dc7899d89fe",
-    "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
-    "OrderDate": "2/2/2022 4:55:19 PM",
-    "TotalPrice": 2899
-  },
-  {
-    "OrderID": "c963adca-b844-4292-be68-1cd99be5ec98",
-    "ListLineItems": [
-      {
-        "ProductName": "Laptop",
-        "Price": 2899,
-        "Quantity": 1,
         "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
       },
       {
@@ -132,54 +15,9 @@
         "ProductID": "e82bf476-0659-41d3-938f-7ec95453c658"
       }
     ],
-    "CustomerID": "545d367e-5502-4d56-8caa-9dc7899d89fe",
+    "CustomerID": "9acdd53b-f0f0-4e02-9212-26ef7c4af602",
     "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
-    "OrderDate": "2/2/2022 4:56:34 PM",
-    "TotalPrice": 3798
-  },
-  {
-    "OrderID": "b447b61d-345d-4666-8033-b8535d393804",
-    "ListLineItems": [
-      {
-        "ProductName": "Laptop",
-        "Price": 2899,
-        "Quantity": 1,
-        "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
-      }
-    ],
-    "CustomerID": "545d367e-5502-4d56-8caa-9dc7899d89fe",
-    "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
-    "OrderDate": "2/2/2022 4:56:57 PM",
-    "TotalPrice": 2899
-  },
-  {
-    "OrderID": "9463743a-08c3-463e-80eb-16493b1193c4",
-    "ListLineItems": [
-      {
-        "ProductName": "Laptop",
-        "Price": 2899,
-        "Quantity": 16,
-        "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
-      }
-    ],
-    "CustomerID": "545d367e-5502-4d56-8caa-9dc7899d89fe",
-    "StoreID": "512af517-ccda-4c39-baa5-1535aee0afc9",
-    "OrderDate": "2/2/2022 4:57:38 PM",
-    "TotalPrice": 46384
-  },
-  {
-    "OrderID": "80313d41-cc0b-4c31-9b51-6e8e2005a994",
-    "ListLineItems": [
-      {
-        "ProductName": "Laptop",
-        "Price": 2899,
-        "Quantity": 1,
-        "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
-      }
-    ],
-    "CustomerID": "545d367e-5502-4d56-8caa-9dc7899d89fe",
-    "StoreID": "62ed31dc-385d-4b11-8c60-1f3822044b83",
-    "OrderDate": "2/2/2022 5:53:37 PM",
-    "TotalPrice": 2899
+    "createdAt": "2022-02-03T13:08:32.538188",
+    "TotalPrice": 15394
   }
 ]

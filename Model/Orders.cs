@@ -6,7 +6,7 @@ namespace Model
     public List<LineItems> ListLineItems { get; set; }
     public string CustomerID { get; set; }
     public string StoreID { get; set; }
-    public string OrderDate { get; set; }
+    public DateTime createdAt { get; set; }
     public int TotalPrice { get; set; }
     public Orders()
     {
@@ -14,7 +14,7 @@ namespace Model
       ListLineItems = new List<LineItems>() { new LineItems() };
       CustomerID = "";
       StoreID = "";
-      OrderDate = "";
+      createdAt = DateTime.Now;
       TotalPrice = 0;
     }
   }

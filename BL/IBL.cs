@@ -25,7 +25,7 @@ namespace BL
 
   public interface IOrderBL
   {
-    Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID);
+    Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID, int _totalPrice);
     List<Orders> GetAllOrdersByCustomerID(string p_cusID);
     List<Orders> GetAllOrdersByStoreID(string p_storeID);
     List<Orders> GetAllOrders();
@@ -37,6 +37,6 @@ namespace BL
     Inventory GetProductDetail(string p_prodId, string p_storeID);
     List<Inventory> GetAllProductsFromStore(string p_storeID);
     List<Products> GetAllInStockProductsDetailFromStore(string p_storeID);
-    Inventory ReplenishProduct(string p_invenID, int p_quantity);
+    void ReplenishProduct(string p_invenID, int p_quantity);
   }
 }

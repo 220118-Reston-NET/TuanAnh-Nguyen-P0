@@ -34,7 +34,7 @@ namespace DL
       return _listOrders;
     }
 
-    public Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID)
+    public Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID, int _totalPrice)
     {
       string _path = _filepath + "Orders.json";
       List<Orders> _listOrders = new List<Orders>();
@@ -42,21 +42,22 @@ namespace DL
 
       //Get a random ID for Order
       _newOrder.OrderID = Guid.NewGuid().ToString();
+
       //Get Date Time when place order
-      string _orderDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")).ToString();
-      _newOrder.OrderDate = _orderDate.ToString();
+      DateTime _createdAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+      _newOrder.createdAt = _createdAt;
 
       _newOrder.CustomerID = _customerID;
       _newOrder.StoreID = _storeID;
       _newOrder.ListLineItems = p_lineItems;
 
-      int _totalPrice = 0;
-      InventoryRepository _subtract = new InventoryRepository();
-      for (int i = 0; i < p_lineItems.Count(); i++)
-      {
-        _totalPrice += p_lineItems[i].Price * p_lineItems[i].Quantity;
-        _subtract.SubtractProduct(p_lineItems[i].ProductID, _storeID, p_lineItems[i].Quantity);
-      }
+      // int _totalPrice = 0;
+      // InventoryRepository _subtract = new InventoryRepository();
+      // for (int i = 0; i < p_lineItems.Count(); i++)
+      // {
+      //   _totalPrice += p_lineItems[i].Price * p_lineItems[i].Quantity;
+      //   _subtract.SubtractProduct(p_lineItems[i].ProductID, _storeID, p_lineItems[i].Quantity);
+      // }
       _newOrder.TotalPrice = _totalPrice;
 
       //Check if the JSON file is exists.

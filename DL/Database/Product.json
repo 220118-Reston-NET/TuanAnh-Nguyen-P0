@@ -3,18 +3,21 @@
     "Name": "Laptop",
     "Price": 2899,
     "Desc": "New generation",
-    "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a"
+    "ProductID": "16f9bfa9-62aa-4f81-a2c6-cc928f1eda7a",
+    "createdAt": "2022-02-01T13:06:17.51868"
   },
   {
     "Name": "Towel",
     "Price": 20,
     "Desc": "Soft, Good",
-    "ProductID": "14707fe6-846d-4890-8dd7-39daaea36fd5"
+    "ProductID": "14707fe6-846d-4890-8dd7-39daaea36fd5",
+    "createdAt": "2022-02-02T13:06:17.51868"
   },
   {
     "Name": "iPad",
     "Price": 899,
     "Desc": "New generation iPad",
-    "ProductID": "e82bf476-0659-41d3-938f-7ec95453c658"
+    "ProductID": "e82bf476-0659-41d3-938f-7ec95453c658",
+    "createdAt": "2022-02-03T13:06:17.51868"
   }
 ]

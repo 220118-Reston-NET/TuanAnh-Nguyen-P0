@@ -27,12 +27,12 @@ namespace DL
     List<Inventory> GetAllProducts();
     List<Products> GetAllInStockProductsDetailFromStore(string p_storeID);
     void SubtractProduct(string p_pID, string p_storeID, int p_quantity);
-    Inventory ReplenishProduct(string p_invenID, int p_quantity);
+    void ReplenishProduct(string p_invenID, int p_quantity);
   }
 
   public interface IOrderRepository
   {
-    Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID);
+    Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID, int _totalPrice);
     List<Orders> GetAllOrders();
   }
 }

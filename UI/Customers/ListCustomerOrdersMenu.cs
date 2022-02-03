@@ -19,7 +19,7 @@ namespace UI
         Console.WriteLine("Here are your order history:");
         for (int i = 0; i < _listOrders.Count(); i++)
         {
-          Console.WriteLine($"---Order {i + 1} on {_listOrders[i].OrderDate}-----------------------");
+          Console.WriteLine($"---Order {i + 1} on {_listOrders[i].createdAt}-----------------------");
           for (int j = 0; j < _listOrders[i].ListLineItems.Count(); j++)
           {
             Console.WriteLine($"{j + 1}. {_listOrders[i].ListLineItems[j].ProductName} - {_listOrders[i].ListLineItems[j].Quantity}");
