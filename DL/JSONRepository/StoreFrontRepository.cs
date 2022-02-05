@@ -77,5 +77,15 @@ namespace DL
         return _listStoreF;
       }
     }
+
+    public StoreFront GetStoreFrontInfoByID(string p_storeID)
+    {
+      throw new NotImplementedException();
+    }
+
+    public StoreFront SaveStoreFront(StoreFront p_storef)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

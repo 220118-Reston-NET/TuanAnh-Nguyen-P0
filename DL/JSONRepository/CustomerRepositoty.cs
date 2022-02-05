@@ -78,5 +78,15 @@ namespace DL
         return _listCus;
       }
     }
+
+    public Customer GetCustomerInfoByID(string p_cusID)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Customer SaveCustomer(Customer p_cus)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

@@ -8,6 +8,11 @@ namespace DL
     private string _filepath = "../DL/Database/";
     private string _jsonString;
 
+    public Shipment AddNewTrackingNumber(string p_orderID, string p_trackingNo)
+    {
+      throw new NotImplementedException();
+    }
+
     public List<LineItems> GetAllLineItemsById(string p_orderID)
     {
       throw new NotImplementedException();
@@ -37,6 +42,11 @@ namespace DL
         return _listOrders;
       }
       return _listOrders;
+    }
+
+    public List<Shipment> GetAllShipmentById(string p_orderID)
+    {
+      throw new NotImplementedException();
     }
 
     public Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID, int _totalPrice)
@@ -96,6 +106,16 @@ namespace DL
       }
 
       return _newOrder;
+    }
+
+    public void RemoveAllTrackingByOrderID(string p_orderID)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void UpdateOrderDetail(string p_orderID, string p_status)
+    {
+      throw new NotImplementedException();
     }
   }
 }

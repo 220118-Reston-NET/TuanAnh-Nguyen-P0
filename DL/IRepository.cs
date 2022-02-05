@@ -6,11 +6,13 @@ namespace DL
   {
     Customer AddCustomer(Customer p_cus);
     List<Customer> GetALlCustomers();
+    Customer SaveCustomer(Customer p_cus);
   }
   public interface IStoreFrontRepository
   {
     StoreFront AddStoreFront(StoreFront p_storef);
     List<StoreFront> GetALlStoreFronts();
+    StoreFront SaveStoreFront(StoreFront p_storef);
   }
 
   public interface IProductRepository
@@ -35,5 +37,9 @@ namespace DL
     Orders PlaceOrder(List<LineItems> p_lineItems, string _storeID, string _customerID, int _totalPrice);
     List<Orders> GetAllOrders();
     List<LineItems> GetAllLineItemsById(string p_orderID);
+    List<Shipment> GetAllShipmentById(string p_orderID);
+    void UpdateOrderDetail(string p_orderID, string p_status);
+    Shipment AddNewTrackingNumber(string p_orderID, string p_trackingNo);
+    void RemoveAllTrackingByOrderID(string p_orderID);
   }
 }

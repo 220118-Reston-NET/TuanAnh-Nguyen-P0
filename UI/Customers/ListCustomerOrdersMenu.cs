@@ -11,9 +11,27 @@ namespace UI
       _listOrderBL = p_listOrderBL;
     }
     private List<Orders> _listOrders;
+    private static string _filter = "";
     public void DisplayAllOrders()
     {
-      _listOrders = _listOrderBL.GetAllOrdersByCustomerID(ListCustomersMenu._currentCustomer.CustomerID);
+      if (_filter == "")
+      {
+        _listOrders = _listOrderBL.GetAllOrdersByCustomerID(ListCustomersMenu._currentCustomer.CustomerID);
+      }
+      else
+      {
+        _listOrders = _listOrderBL.GetAllOrdersByCustomerIDWithFilter(ListCustomersMenu._currentCustomer.CustomerID, _filter);
+        if (_listOrders.Count() == 0)
+        {
+          _filter = "";
+          Console.WriteLine("None of orders have this filter");
+          Console.WriteLine("Please press Enter to return back to ");
+          Console.ReadLine();
+          Console.Clear();
+          _listOrders = _listOrderBL.GetAllOrdersByCustomerID(ListCustomersMenu._currentCustomer.CustomerID);
+        }
+      }
+
       if (_listOrders.Count() > 0)
       {
         Console.WriteLine("Here are your order history:");
@@ -25,8 +43,18 @@ namespace UI
             Console.WriteLine($"{j + 1}. {_listOrders[i].ListLineItems[j].ProductName} - {_listOrders[i].ListLineItems[j].Quantity}");
           }
           Console.WriteLine($"Total Price: ${_listOrders[i].TotalPrice}");
+          Console.WriteLine("Order Status: " + _listOrders[i].Status);
+          if (_listOrders[i].ListTrackings.Count() > 0)
+          {
+            for (int k = 0; k < _listOrders[i].ListTrackings.Count(); k++)
+            {
+              Console.WriteLine($"Tracking Number {k + 1}: {_listOrders[i].ListTrackings[k].TrackingNumber}");
+            }
+          }
         }
         Console.WriteLine("-----------");
+        Console.WriteLine("You can use these keywords to filter the Order Status:");
+        Console.WriteLine("['All', 'Order Placed', 'Shipped', 'Delivered', 'Cancelled']");
       }
       else
       {
@@ -47,7 +75,23 @@ namespace UI
       switch (_userInput)
       {
         case "0":
+          _filter = "";
           return "MainMenu";
+        case "All":
+          _filter = "";
+          return "ListCustomerOrdersMenu";
+        case "Order Placed":
+          _filter = "Order Placed";
+          return "ListCustomerOrdersMenu";
+        case "Shipped":
+          _filter = "Shipped";
+          return "ListCustomerOrdersMenu";
+        case "Delivered":
+          _filter = "Delivered";
+          return "ListCustomerOrdersMenu";
+        case "Cancelled":
+          _filter = "Cancelled";
+          return "ListCustomerOrdersMenu";
 
         default:
           Console.WriteLine("Please input a valid response!");

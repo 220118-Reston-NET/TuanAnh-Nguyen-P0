@@ -32,6 +32,23 @@ namespace BL
       return _repo.GetALlCustomers();
     }
 
+    public Customer GetCustomerInfoByID(string p_cusID)
+    {
+      Customer _cusDetail = GetALlCustomers().Where(p => p.CustomerID == p_cusID).First();
+
+      return _cusDetail;
+    }
+
+    public Customer SaveCustomer(Customer p_cus)
+    {
+      List<Customer> _listCus = GetALlCustomers().Where(p => p.CustomerID != p_cus.CustomerID).ToList();
+      if (_listCus.Any(p => p.Name == p_cus.Name))
+      {
+        throw new Exception("Cannot save customer due to name of customer is already in the store database!");
+      }
+      return _repo.SaveCustomer(p_cus);
+    }
+
     public List<Customer> SearchCustomersByName(string p_cusName)
     {
       List<Customer> _filteredList = new List<Customer>();

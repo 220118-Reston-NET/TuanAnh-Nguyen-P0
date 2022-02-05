@@ -16,6 +16,7 @@ namespace UI
         Console.WriteLine("Hello " + ListCustomersMenu._currentCustomer.Name + ", you are signing in as a Customer!");
         Console.WriteLine("What do you want to do today?");
         Console.WriteLine("[S] - Sign Out");
+        Console.WriteLine("[P] - Profile");
         Console.WriteLine("[1] - Order History");
         Console.WriteLine("[2] - Place a new order");
       }
@@ -24,6 +25,7 @@ namespace UI
         Console.WriteLine("Hello " + ListStoresMenu._currentStoreFront.Name + ", you are signing in as a Store Manager!");
         Console.WriteLine("What do you want to do today?");
         Console.WriteLine("[S] - Sign Out");
+        Console.WriteLine("[P] - Profile");
         Console.WriteLine("[1] - Orders");
         Console.WriteLine("[2] - Inventory");
       }
@@ -70,6 +72,22 @@ namespace UI
           else
           {
             Log.Information("User is trying to Signout without Login!");
+            goto default;
+          }
+        case "P":
+          if (ListCustomersMenu._currentCustomer.Name != "")
+          {
+            Log.Information($"{ListCustomersMenu._currentCustomer.Name} editing the profile");
+            return "EditCustomerProfile";
+          }
+          else if (ListStoresMenu._currentStoreFront.Name != "")
+          {
+            Log.Information($"{ListStoresMenu._currentStoreFront.Name} editing the profile");
+            return "EditStoreFrontProfile";
+          }
+          else
+          {
+            Log.Information("User is trying to access Edit Profile without Login!");
             goto default;
           }
         case "1":

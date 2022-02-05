@@ -1,27 +1,29 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
-
 using BL;
 using Model;
 
 namespace UI
 {
-  public class AddCustomerMenu : IMenu
+  public class EditCustomerProfileMenu : IMenu
   {
-    private static Customer _newCustomer = new Customer();
-
-    private ICustomerBL _cusBL;
-    public AddCustomerMenu(ICustomerBL p_cus)
+    private CustomerBL _cusBL;
+    public EditCustomerProfileMenu(CustomerBL p_cusBL)
     {
-      _cusBL = p_cus;
+      _cusBL = p_cusBL;
     }
+    private static Customer _cusInfo = new Customer();
     public void Display()
     {
-      Console.WriteLine("Enter new customer information");
-      Console.WriteLine("[1] - Name: " + _newCustomer.Name);
-      Console.WriteLine("[2] - Address: " + _newCustomer.Address);
-      Console.WriteLine("[3] - Email: " + _newCustomer.Email);
-      Console.WriteLine("[4] - Phone Number: " + _newCustomer.PhoneNumber);
+      if (_cusInfo.Name == "")
+      {
+        _cusInfo = _cusBL.GetCustomerInfoByID(ListCustomersMenu._currentCustomer.CustomerID);
+      }
+      Console.WriteLine("Your profile:");
+      Console.WriteLine("[1] - Name: " + _cusInfo.Name);
+      Console.WriteLine("[2] - Address: " + _cusInfo.Address);
+      Console.WriteLine("[3] - Email: " + _cusInfo.Email);
+      Console.WriteLine("[4] - Phone Number: " + _cusInfo.PhoneNumber);
       Console.WriteLine("-----");
       Console.WriteLine("[9] - Save & Go back");
       Console.WriteLine("[0] - Go back");
@@ -47,8 +49,8 @@ namespace UI
             Console.WriteLine("Please enter customer name:");
             _userInputName = Console.ReadLine();
           }
-          _newCustomer.Name = _userInputName;
-          return "AddNewCustomer";
+          _cusInfo.Name = _userInputName;
+          return "EditCustomerProfile";
         case "2":
           Console.WriteLine("Please enter the address:");
           string _userInputAddress = Console.ReadLine();
@@ -60,8 +62,8 @@ namespace UI
             Console.WriteLine("Please enter customer address:");
             _userInputAddress = Console.ReadLine();
           }
-          _newCustomer.Address = _userInputAddress;
-          return "AddNewCustomer";
+          _cusInfo.Address = _userInputAddress;
+          return "EditCustomerProfile";
         case "3":
           Console.WriteLine("Please enter the email:");
           string _userInputEmail = Console.ReadLine();
@@ -73,8 +75,8 @@ namespace UI
             Console.WriteLine("Please enter customer email address:");
             _userInputEmail = Console.ReadLine();
           }
-          _newCustomer.Email = _userInputEmail;
-          return "AddNewCustomer";
+          _cusInfo.Email = _userInputEmail;
+          return "EditCustomerProfile";
         case "4":
           Console.WriteLine("Please enter the phone number:");
           string _userInputPhoneNumber = Console.ReadLine();
@@ -87,28 +89,29 @@ namespace UI
             Console.WriteLine("Please enter customer phone number:");
             _userInputPhoneNumber = Console.ReadLine();
           }
-          _newCustomer.PhoneNumber = _userInputPhoneNumber;
-          return "AddNewCustomer";
+          _cusInfo.PhoneNumber = _userInputPhoneNumber;
+          return "EditCustomerProfile";
         case "9":
           //Check if all information filled completely
-          if (_newCustomer.Name == "" || _newCustomer.Address == "" || _newCustomer.Email == "" || _newCustomer.PhoneNumber == "")
+          if (_cusInfo.Name == "" || _cusInfo.Address == "" || _cusInfo.Email == "" || _cusInfo.PhoneNumber == "")
           {
             Console.WriteLine("You need to fill every information above before saving!");
             System.Threading.Thread.Sleep(2000);
-            return "AddNewCustomer";
+            return "EditCustomerProfile";
           }
           else
           {
-            //Add customer to the database
+            //Save customer back to the database
             try
             {
-              Log.Information("Adding a new customer:\n" + _newCustomer);
-              _cusBL.AddCustomer(_newCustomer);
-              Log.Information("Added new customer to the database");
-              Console.WriteLine("Added new customer succesfully!");
+              Log.Information("Save customer:\n" + _cusInfo);
+              _cusBL.SaveCustomer(_cusInfo);
+              Log.Information("Save customer to the database");
+              Console.WriteLine("Save customer succesfully!");
 
               //Clear the input information after saved and create a new one
-              _newCustomer = new Customer();
+              ListCustomersMenu._currentCustomer = _cusInfo;
+              _cusInfo = new Customer();
               Console.WriteLine("Returning back to the main menu!");
               System.Threading.Thread.Sleep(2000);
 
@@ -116,18 +119,18 @@ namespace UI
             }
             catch (System.Exception exc)
             {
-              Log.Warning("Failed to add a new customer due to the name existed in the database");
+              Log.Warning("Failed to save customer due to the name existed in the database");
               Console.WriteLine(exc.Message);
               Console.WriteLine("Please press Enter to continue");
               Console.ReadLine();
-              return "AddNewCustomer";
+              return "EditCustomerProfile";
             }
           }
         default:
           Console.WriteLine("Please input a valid resonse!");
           Console.WriteLine("Please press Enter to continue");
           Console.ReadLine();
-          return "AddNewCustomer";
+          return "EditCustomerProfile";
       }
     }
 
@@ -190,5 +193,6 @@ namespace UI
         return true;
       }
     }
+
   }
 }

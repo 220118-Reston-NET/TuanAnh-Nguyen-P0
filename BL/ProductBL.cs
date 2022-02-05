@@ -38,6 +38,11 @@ namespace BL
 
     public Products SaveProduct(Products p_prod)
     {
+      List<Products> _listProd = GetAllProducts().Where(p => p.ProductID != p_prod.ProductID).ToList();
+      if (_listProd.Any(p => p.Name == p_prod.Name))
+      {
+        throw new Exception("Cannot save product due to name of product is already in the store database!");
+      }
       return _repo.SaveProduct(p_prod);
     }
   }

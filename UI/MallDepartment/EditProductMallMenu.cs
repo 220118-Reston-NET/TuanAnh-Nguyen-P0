@@ -10,10 +10,14 @@ namespace UI
     {
       _prodBL = p_prod;
     }
-    private Products _prodDetail;
+    private static Products _prodDetail = new Products();
     public void Display()
     {
-      _prodDetail = _prodBL.GetProductDetail(ListAllMallProductMenu._selectProductID);
+      if (_prodDetail.Name == "")
+      {
+        _prodDetail = _prodBL.GetProductDetail(ListAllMallProductMenu._selectProductID);
+      }
+
       Console.WriteLine("Information of the product that you want to modify:");
       Console.WriteLine("[1] - Name:        " + _prodDetail.Name);
       Console.WriteLine("[2] - Price:       " + _prodDetail.Price);
@@ -81,17 +85,29 @@ namespace UI
           }
           else
           {
-            //Save product to the database after modified
-            Log.Information("Save new product information to the database: " + _prodDetail);
-            _prodBL.SaveProduct(_prodDetail);
-            Log.Information("Saved the product succesfully!");
-            Console.WriteLine("Saved the product succesfully!");
-            Console.WriteLine("Returning back to the previous menu!");
-            System.Threading.Thread.Sleep(2000);
+            try
+            {
+              //Save product to the database after modified
+              Log.Information("Save new product information to the database: " + _prodDetail);
+              _prodBL.SaveProduct(_prodDetail);
+              Log.Information("Saved the product succesfully!");
+              Console.WriteLine("Saved the product succesfully!");
+              Console.WriteLine("Returning back to the previous menu!");
+              System.Threading.Thread.Sleep(2000);
 
-            //Clear the input information after saved and create a new one
-            _prodDetail = new Products();
-            return "ListAllMallProductsMenu";
+              //Clear the input information after saved and create a new one
+              _prodDetail = new Products();
+              return "ListAllMallProductsMenu";
+            }
+            catch (System.Exception exc)
+            {
+              Log.Warning("Failed to save product due to the product name existed in the database");
+              Console.WriteLine(exc.Message);
+              Console.WriteLine("Please press Enter to continue");
+              Console.ReadLine();
+              return "EditProductMallMenu";
+            }
+
           }
         default:
           Console.WriteLine("Please input a valid resonse!");

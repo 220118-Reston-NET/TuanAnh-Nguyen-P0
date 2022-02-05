@@ -74,7 +74,7 @@ namespace DL
       string _sqlQuery = @"UPDATE Products 
                           SET productName = @productName,
                             productPrice = @productPrice,
-                            productDesc = @productDesc'
+                            productDesc = @productDesc
                           WHERE productID = @productID";
 
       using (SqlConnection conn = new SqlConnection(_connectionString))

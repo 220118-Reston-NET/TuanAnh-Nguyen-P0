@@ -35,7 +35,9 @@ namespace DL
             StoreID = reader.GetString(2),
             CustomerID = reader.GetString(3),
             createdAt = reader.GetDateTime(4),
-            ListLineItems = GetAllLineItemsById(reader.GetString(0))
+            Status = reader.GetString(5),
+            ListLineItems = GetAllLineItemsById(reader.GetString(0)),
+            ListTrackings = GetAllShipmentById(reader.GetString(0))
           });
         }
       }
@@ -47,7 +49,7 @@ namespace DL
     {
       //Add new Order query
       string _sqlQuery = @"INSERT INTO Orders
-                          VALUES(@orderID, @totalPrice, @storeID, @cusID, @createdAt)";
+                          VALUES(@orderID, @totalPrice, @storeID, @cusID, @createdAt, @orderStatus)";
 
       //Add new LineItems query
       string _sqlQuery2 = @"INSERT INTO LineItems
@@ -70,6 +72,7 @@ namespace DL
         command.Parameters.AddWithValue("storeID", _storeID);
         command.Parameters.AddWithValue("@cusID", _customerID);
         command.Parameters.AddWithValue("@createdAt", _newOrder.createdAt);
+        command.Parameters.AddWithValue("@orderStatus", "Order Placed");
 
         command.ExecuteNonQuery();
 
@@ -121,6 +124,94 @@ namespace DL
       }
 
       return _listLineItems;
+    }
+
+    public List<Shipment> GetAllShipmentById(string p_orderID)
+    {
+      string _sqlQuery = @"SELECT * FROM Shipment
+                          WHERE orderID = @orderID";
+      List<Shipment> _listShipment = new List<Shipment>();
+
+      using (SqlConnection conn = new SqlConnection(_connectionString))
+      {
+        conn.Open();
+
+        SqlCommand command = new SqlCommand(_sqlQuery, conn);
+        command.Parameters.AddWithValue("@orderID", p_orderID);
+
+        SqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+          _listShipment.Add(new Shipment()
+          {
+            ShipmentID = reader.GetString(0),
+            OrderID = reader.GetString(1),
+            TrackingNumber = reader.GetString(2)
+          });
+        }
+      }
+
+      return _listShipment;
+    }
+
+    public void UpdateOrderDetail(string p_orderID, string p_status)
+    {
+      string _sqlQuery = @"UPDATE Orders 
+                          SET orderStatus = @orderStatus
+                          WHERE orderID = @orderID";
+      Orders _orderDetail = new Orders();
+
+      using (SqlConnection conn = new SqlConnection(_connectionString))
+      {
+        conn.Open();
+
+        SqlCommand command = new SqlCommand(_sqlQuery, conn);
+        command.Parameters.AddWithValue("@orderStatus", p_status);
+        command.Parameters.AddWithValue("@orderID", p_orderID);
+
+        command.ExecuteNonQuery();
+      }
+    }
+
+    public Shipment AddNewTrackingNumber(string p_orderID, string p_trackingNo)
+    {
+      string _sqlQuery = @"INSERT INTO Shipment
+                        VALUES(@shipmentID, @orderID, @trackingNumber)";
+      Shipment _shipment = new Shipment();
+      _shipment.ShipmentID = Guid.NewGuid().ToString();
+      _shipment.OrderID = p_orderID;
+      _shipment.TrackingNumber = p_trackingNo;
+
+      using (SqlConnection conn = new SqlConnection(_connectionString))
+      {
+        conn.Open();
+
+        SqlCommand command = new SqlCommand(_sqlQuery, conn);
+        command.Parameters.AddWithValue("@shipmentID", _shipment.ShipmentID);
+        command.Parameters.AddWithValue("@orderID", p_orderID);
+        command.Parameters.AddWithValue("@trackingNumber", p_trackingNo);
+
+        command.ExecuteNonQuery();
+      }
+
+      return _shipment;
+    }
+
+    public void RemoveAllTrackingByOrderID(string p_orderID)
+    {
+      string _sqlQuery = @"DELETE FROM Shipment 
+                          WHERE orderID = @orderID";
+
+      using (SqlConnection conn = new SqlConnection(_connectionString))
+      {
+        conn.Open();
+
+        SqlCommand command = new SqlCommand(_sqlQuery, conn);
+        command.Parameters.AddWithValue("@orderID", p_orderID);
+
+        command.ExecuteNonQuery();
+      }
     }
   }
 }

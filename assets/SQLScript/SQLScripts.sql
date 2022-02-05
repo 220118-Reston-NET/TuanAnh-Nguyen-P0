@@ -62,3 +62,16 @@ CREATE TABLE Inventory(
 	FOREIGN KEY (storeID) REFERENCES StoreFronts(storeID),
 	FOREIGN KEY (productID) REFERENCES Products(productID)
 )
+
+----- v1.0.1----------------------------------
+ALTER TABLE Orders
+ADD orderStatus varchar(20)
+
+-- Shipment -------
+CREATE TABLE Shipment(
+	shipmentID varchar(50),
+	orderID varchar(50),
+	trackingNumber varchar(50),
+	PRIMARY KEY (shipmentID),
+	FOREIGN KEY (orderID) REFERENCES Orders(orderID)
+)

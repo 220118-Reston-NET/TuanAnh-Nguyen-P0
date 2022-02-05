@@ -62,5 +62,27 @@ namespace DL
 
       return _listStoreF;
     }
+
+    public StoreFront SaveStoreFront(StoreFront p_storef)
+    {
+      string _sqlQuery = @"UPDATE StoreFronts 
+                        SET storeName = @storeName,
+                          storeAddress = @storeAddress
+                        WHERE storeID = @storeID";
+
+      using (SqlConnection conn = new SqlConnection(_connectionString))
+      {
+        conn.Open();
+
+        SqlCommand command = new SqlCommand(_sqlQuery, conn);
+        command.Parameters.AddWithValue("@storeName", p_storef.Name);
+        command.Parameters.AddWithValue("@storeAddress", p_storef.Address);
+        command.Parameters.AddWithValue("storeID", p_storef.StoreID);
+
+        command.ExecuteNonQuery();
+      }
+
+      return p_storef;
+    }
   }
 }

@@ -57,6 +57,10 @@ while (repeat)
       Log.Information("Displaying the List All Customer Orders Menu");
       menu = new ListCustomerOrdersMenu(new OrderBL(new OrderSQLRepository(_connectionString)));
       break;
+    case "EditCustomerProfile":
+      Log.Information("Displaying the Customer Profile Menu");
+      menu = new EditCustomerProfileMenu(new CustomerBL(new CustomerSQLRepository(_connectionString)));
+      break;
 
     //StoreFront Options after signed in
     case "InventoryMenu":
@@ -78,6 +82,14 @@ while (repeat)
     case "ListStoreOrdersMenu":
       Log.Information("Displaying the List of All Stores Menu");
       menu = new ListStoreOrdersMenu(new OrderBL(new OrderSQLRepository(_connectionString)));
+      break;
+    case "OrderDetailMenu":
+      Log.Information("Displaying the List of All Stores Menu");
+      menu = new OrderDetailMenu(new OrderBL(new OrderSQLRepository(_connectionString)), new CustomerBL(new CustomerSQLRepository(_connectionString)));
+      break;
+    case "EditStoreFrontProfile":
+      Log.Information("Displaying the StoreFront Profile Menu");
+      menu = new EditStoreFrontProfileMenu(new StoreFrontBL(new StoreFrontSQLRepository(_connectionString)));
       break;
 
     //Mall Department

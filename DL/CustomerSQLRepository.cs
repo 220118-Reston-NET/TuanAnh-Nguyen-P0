@@ -66,5 +66,31 @@ namespace DL
 
       return _listCus;
     }
+
+    public Customer SaveCustomer(Customer p_cus)
+    {
+      string _sqlQuery = @"UPDATE Customers
+                          SET cusName = @cusName,
+                            cusAddress = @cusAddress,
+                            cusEmail = @cusEmail,
+                            cusPhoneNo = @cusPhoneNo
+                          WHERE cusID = @cusID";
+
+      using (SqlConnection conn = new SqlConnection(_connectionString))
+      {
+        conn.Open();
+
+        SqlCommand command = new SqlCommand(_sqlQuery, conn);
+        command.Parameters.AddWithValue("@cusName", p_cus.Name);
+        command.Parameters.AddWithValue("@cusAddress", p_cus.Address);
+        command.Parameters.AddWithValue("@cusEmail", p_cus.Email);
+        command.Parameters.AddWithValue("@cusPhoneNo", p_cus.PhoneNumber);
+        command.Parameters.AddWithValue("@cusID", p_cus.CustomerID);
+
+        command.ExecuteNonQuery();
+      }
+
+      return p_cus;
+    }
   }
 }

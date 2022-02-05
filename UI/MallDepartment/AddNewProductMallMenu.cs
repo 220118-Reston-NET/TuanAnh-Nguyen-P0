@@ -96,7 +96,7 @@ namespace UI
             }
             catch (System.Exception exc)
             {
-              Log.Warning("Failed to add a new product due tot the product existed in he database");
+              Log.Warning("Failed to add a new product due to the product existed in the database");
               Console.WriteLine(exc.Message);
               Console.WriteLine("Please press Enter to continue");
               Console.ReadLine();
