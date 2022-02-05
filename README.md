@@ -18,6 +18,7 @@
     - [Connection Strings](#connection-strings)
 - [Changelog](#changelog)
   - [v1.0.0](#v100)
+  - [v1.0.1](#v101)
 - [Contributing](#contributing)
 - [Contacts](#contacts)
 
@@ -25,7 +26,6 @@
 There are 3 main group users in this project:
 ## Customers
 - Sign Up/Sign In(No need password now)
-- Edit Profile
 - Choose where to shop and place a new order
 - Check Orders History
 ## Stores
@@ -37,6 +37,7 @@ There are 3 main group users in this project:
 ## Admin/Manager
 - Add new product to the system
 - Edit product information
+- Check all the products in the system
 
 # Technologies
 - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/)
@@ -86,7 +87,7 @@ Then, click "Review + create". Please check all the information, it should look 
 ![Screenshot](assets/Images/ReviewCreate.png)
 
 And finally, click "Create"!
-After the Deploument is done, you can see your Database is now available to deploy, and then click "Go to resource":
+After the Deployment Progress is done, you can see your Database is now available to deploy, and then click "Go to resource":
 
 ![Screenshot](assets/Images/DeploymentDone.png)
 
@@ -120,37 +121,49 @@ Done for the Query Section!
 After you setup your cloud database, you will need to edit and add some files to make the project works in your own machine.
 ### Connection Strings
 ```C#
-// In UI/Program.cs file, edit these lines below
-
-var configuration = new ConfigurationBuilder()
-                        .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile({jsonfilename})
-                        .Build();
-
-string _connectionString = configuration.GetConnectionString(key);
-
-/** Where
-jsonfilename - your appsettings.json file path.
-key - name of the key in ConnectionString. 
-**/
-
--------------------------------------------
-// Create appsettings.json file
+// Create a json file
 // And REMEMBER don't upload this file to cloud. You might have some unauthorized access to your Database since your connectionString is now visile.
+// You can replaced the "key" with anything. Ex: ReferenceToDB
 {
     "ConnectionStrings": {
         "key": "your connectionString ADO.NET from Azure"
     }
 }
+-------------------------------------------
+// In UI/Program.cs file, edit these lines below
+
+var configuration = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile(jsonfilename)
+                        .Build();
+
+string _connectionString = configuration.GetConnectionString(key);
+
+/** Where
+jsonfilename - your json name you just created above.
+key - name of the key in ConnectionStrings. 
+**/
+
 ```
 Done :D Enjoy it!
 
 # Changelog
 ## v1.0.0
 - Release
+## v1.0.1
+Added new features and fixed some bugs.
+- Customer
+  + Edit Profile Information
+- Stores
+  + Edit Profile Information
+  + Add Tracking Number to Order
+  + Cancel Order
+  + Recall and Return Shipment Order even shipped
+- Admin/Manager
+  + Edit Product Information
 
 # Contributing
-As I did this project for the course, so if you want to have more features, please give me a request or just [open an issue]([issues](https://github.com/220118-Reston-NET/TuanAnh-Nguyen-P0/issues)) and tell me your ideas.
+As I did this project for the course, so if you want to have more features, please give me a request or just [open an issue](https://github.com/220118-Reston-NET/TuanAnh-Nguyen-P0/issues) and tell me your ideas.
 
 # Contacts
 - Github: [@kirasn](https://github.com/kirasn)
