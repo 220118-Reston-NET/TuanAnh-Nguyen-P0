@@ -150,7 +150,7 @@ Done :D Enjoy it!
 - Release
 
 # Contributing
-As I did this project for the course, so if you want to have more features, please give me a request or just [open an issue](https://github.com/220118-Reston-NET/TuanAnh-Nguyen-P0/issues) and tell me your ideas.
+As I did this project for the course, so if you want to have more features, please give me a request or just [open an issue](issues) and tell me your ideas.
 
 # Contacts
 - Github: [@kirasn](https://github.com/kirasn)
