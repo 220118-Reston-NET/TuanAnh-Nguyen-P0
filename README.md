@@ -24,32 +24,41 @@
 
 # Features
 There are 3 main group users in this project:
+>v1.0.1 included
 ## Customers
 - Sign Up/Sign In(No need password now)
 - Choose where to shop and place a new order
 - Check Orders History
+- Edit Profile Information (v1.0.1 added)
 ## Stores
 - Sign Up/Sign In(No need password now)
 - Import new product to store
 - Check Inventory
 - Replenish Inventory
 - Check Orders History
+- Edit Profile Information (v1.0.1 added)
+- Add Tracking Number to Order (v1.0.1 added)
+- Cancel Order (v1.0.1 added)
+- Recall and Return Shipment Order even shipped (v1.0.1 added)
 ## Admin/Manager
 - Add new product to the system
 - Edit product information
 - Check all the products in the system
-
+- Edit Product Information (v1.0.1 added)
+  
 # Technologies
 - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/)
 - [LINQ](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/)
 - [Visual Studio Code](https://code.visualstudio.com)
+- [JSON](https://www.json.org/json-en.html)
+- [SQL/Microsoft Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/)
 - [DBeaver](https://dbeaver.io)
 - [Git](https://git-scm.com)
 - [Markdown](https://daringfireball.net/projects/markdown/)
 
 # Setting Up & Run the app in your own machine
 ## Database Setup Section
-Here I use [Microsoft Azure SQL Database](https://portal.azure.com/) for my project, but you are free to use anything you like.
+Here I use [Microsoft Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) for my project, but you are free to use anything you like.
 
 After signed in(I do recommended you to use a free subscription for this project :D), here is your Portal(yours might be a little bit different with mine but the only thing we care is "SQL Databases", so just focus on it):
 
@@ -100,7 +109,7 @@ Copy and save all the text in the box "ADO.NET (SQL authentication)" to where yo
 We done for the Azure Database setup part!
 
 ## Query Scripting Section
-The way I show you below don't need any setup to query, but you definitely can use [VSCode](https://code.visualstudio.com) or [DBeaver](https://dbeaver.io),... to run the query as well. If you need help to setup the connection from Azure to your VSCode, please contact me.
+The way I show you below don't need any setup to query, but you definitely can use [VSCode](https://code.visualstudio.com) or [DBeaver](https://dbeaver.io),... to run the query as well. If you need help to setup the connection from Azure to your VSCode, please [contact me](#contacts).
 
 ### Cloud Query
 Click to the "Query editor" section in the left sidebar(Azure Portal):
@@ -120,18 +129,21 @@ Done for the Query Section!
 ## Configuration Section
 After you setup your cloud database, you will need to edit and add some files to make the project works in your own machine.
 ### Connection Strings
-```C#
-// Create a json file
-// And REMEMBER don't upload this file to cloud. You might have some unauthorized access to your Database since your connectionString is now visile.
-// You can replaced the "key" with anything. Ex: ReferenceToDB
+
+Create a json file
+
+> And REMEMBER don't upload this file to cloud. You might have some unauthorized access to your Database since your connectionString is now visile.
+
+You can replaced the "key" with anything. Ex: ReferenceToDB
+```json
 {
     "ConnectionStrings": {
         "key": "your connectionString ADO.NET from Azure"
     }
 }
--------------------------------------------
-// In UI/Program.cs file, edit these lines below
-
+```
+In UI/Program.cs file, edit these lines below
+```cs
 var configuration = new ConfigurationBuilder()
                         .SetBasePath(Directory.GetCurrentDirectory())
                         .AddJsonFile(jsonfilename)
@@ -151,16 +163,9 @@ Done :D Enjoy it!
 ## v1.0.0
 - Release
 ## v1.0.1
-Added new features and fixed some bugs.
-- Customer
-  + Edit Profile Information
-- Stores
-  + Edit Profile Information
-  + Add Tracking Number to Order
-  + Cancel Order
-  + Recall and Return Shipment Order even shipped
-- Admin/Manager
-  + Edit Product Information
+- Added [new features](#features).
+- Fixed some bugs.
+
 
 # Contributing
 As I did this project for the course, so if you want to have more features, please give me a request or just [open an issue](https://github.com/220118-Reston-NET/TuanAnh-Nguyen-P0/issues) and tell me your ideas.
