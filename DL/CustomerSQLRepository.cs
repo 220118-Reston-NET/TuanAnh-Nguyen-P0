@@ -1,5 +1,4 @@
 using System.Data.SqlClient;
-using System.Text.Json;
 using Model;
 
 namespace DL
@@ -14,7 +13,7 @@ namespace DL
     public Customer AddCustomer(Customer p_cus)
     {
       string _sqlQuery = @"INSERT INTO Customers
-                VALUES(@cusID, @cusName, @cusAddress, @cusEmail, @cusPhoneNo, @createdAt)";
+                VALUES(@cusID, @cusName, @cusAddress, @cusEmail, @cusPhoneNo, @createdAt, @dateOfBirth)";
 
       p_cus.CustomerID = Guid.NewGuid().ToString();
       p_cus.createdAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
@@ -30,6 +29,7 @@ namespace DL
         command.Parameters.AddWithValue("@cusEmail", p_cus.Email);
         command.Parameters.AddWithValue("@cusPhoneNo", p_cus.PhoneNumber);
         command.Parameters.AddWithValue("@createdAt", p_cus.createdAt);
+        command.Parameters.AddWithValue("@dateOfBirth", p_cus.DateOfBirth);
 
         command.ExecuteNonQuery();
       }
@@ -59,7 +59,8 @@ namespace DL
             Address = reader.GetString(2),
             Email = reader.GetString(3),
             PhoneNumber = reader.GetString(4),
-            createdAt = reader.GetDateTime(5)
+            createdAt = reader.GetDateTime(5),
+            DateOfBirth = reader.GetDateTime(6),
           });
         }
       }
@@ -73,7 +74,8 @@ namespace DL
                           SET cusName = @cusName,
                             cusAddress = @cusAddress,
                             cusEmail = @cusEmail,
-                            cusPhoneNo = @cusPhoneNo
+                            cusPhoneNo = @cusPhoneNo,
+                            dateOfBirth = @dateOfBirth
                           WHERE cusID = @cusID";
 
       using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -85,6 +87,7 @@ namespace DL
         command.Parameters.AddWithValue("@cusAddress", p_cus.Address);
         command.Parameters.AddWithValue("@cusEmail", p_cus.Email);
         command.Parameters.AddWithValue("@cusPhoneNo", p_cus.PhoneNumber);
+        command.Parameters.AddWithValue("@dateOfBirth", p_cus.DateOfBirth);
         command.Parameters.AddWithValue("@cusID", p_cus.CustomerID);
 
         command.ExecuteNonQuery();

@@ -23,7 +23,9 @@
     public string Address { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
+
     public DateTime createdAt { get; set; }
+    public DateTime DateOfBirth { get; set; }
 
     //Default constructor to add default values to the properties
     public Customer()
@@ -32,11 +34,22 @@
       Address = "";
       Email = "";
       PhoneNumber = "";
+      DateOfBirth = DateTime.UtcNow;
     }
 
     public override string ToString()
     {
-      return $"Name: {Name}\nAddress: {Address}\nEmail: {Email}\nPhoneNumber: {PhoneNumber}\nCreated At: {createdAt}";
+      return $"Name: {Name}\nAddress: {Address}\nEmail: {Email}\nPhoneNumber: {PhoneNumber}\nCreated At: {createdAt}\nDOB: {DateOfBirth.ToShortDateString()}({Age(DateOfBirth)})";
+    }
+
+    protected int Age(DateTime p_dateOfBirth)
+    {
+      int _age = DateTime.UtcNow.Year - p_dateOfBirth.Year;
+      if (DateTime.UtcNow.Month < p_dateOfBirth.Month || DateTime.UtcNow.Month == p_dateOfBirth.Month && DateTime.UtcNow.Day < p_dateOfBirth.Day)
+      {
+        _age--;
+      }
+      return _age;
     }
   }
 }

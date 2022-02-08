@@ -75,3 +75,13 @@ CREATE TABLE Shipment(
 	PRIMARY KEY (shipmentID),
 	FOREIGN KEY (orderID) REFERENCES Orders(orderID)
 )
+
+----- v1.0.2----------------------------------
+ALTER TABLE LineItems
+ADD priceAtCheckedOut int
+
+ALTER TABLE Customers
+ADD dateOfBirth smalldatetime
+
+ALTER TABLE Products
+ADD minimumAge int

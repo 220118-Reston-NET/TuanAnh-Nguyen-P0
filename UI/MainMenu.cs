@@ -41,6 +41,7 @@ namespace UI
         Console.WriteLine("[5] - Product Management");
       }
       Console.WriteLine("---You also can use this option below to search for:");
+      Console.WriteLine("[8] - Product");
       Console.WriteLine("[9] - Customer");
       Console.WriteLine("-------------");
       Console.WriteLine("[0] - Exit");
@@ -147,6 +148,8 @@ namespace UI
           {
             return "MallMenu";
           }
+        case "8":
+          return "SearchProductMenu";
         case "9":
           return "SearchCustomerMenu";
         default:

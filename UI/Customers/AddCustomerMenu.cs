@@ -22,6 +22,7 @@ namespace UI
       Console.WriteLine("[2] - Address: " + _newCustomer.Address);
       Console.WriteLine("[3] - Email: " + _newCustomer.Email);
       Console.WriteLine("[4] - Phone Number: " + _newCustomer.PhoneNumber);
+      Console.WriteLine("[5] - Date Of Birth: " + _newCustomer.DateOfBirth.ToShortDateString());
       Console.WriteLine("-----");
       Console.WriteLine("[9] - Save & Go back");
       Console.WriteLine("[0] - Go back");
@@ -89,9 +90,22 @@ namespace UI
           }
           _newCustomer.PhoneNumber = _userInputPhoneNumber;
           return "AddNewCustomer";
+        case "5":
+          Console.WriteLine("Please enter the Date Of Birth following by this format 'MM/dd/yyyy':");
+          string _userInputDOB = Console.ReadLine();
+
+          //Check if the input is empty
+          while (!IsValidDateOfBirth(_userInputDOB + " 8:30 AM"))
+          {
+            Console.WriteLine("Date of Birth is not in the format, please try again! Ex. 12/31/1990");
+            Console.WriteLine("Please enter date of birth following by this format 'MM/dd/yyyy':");
+            _userInputDOB = Console.ReadLine();
+          }
+          _newCustomer.DateOfBirth = Convert.ToDateTime(_userInputDOB);
+          return "AddNewCustomer";
         case "9":
           //Check if all information filled completely
-          if (_newCustomer.Name == "" || _newCustomer.Address == "" || _newCustomer.Email == "" || _newCustomer.PhoneNumber == "")
+          if (_newCustomer.Name == "" || _newCustomer.Address == "" || _newCustomer.Email == "" || _newCustomer.PhoneNumber == "" || _newCustomer.DateOfBirth.ToShortDateString() == DateTime.UtcNow.ToShortDateString())
           {
             Console.WriteLine("You need to fill every information above before saving!");
             System.Threading.Thread.Sleep(2000);
@@ -189,6 +203,21 @@ namespace UI
       {
         return true;
       }
+    }
+
+    public static bool IsValidDateOfBirth(string _dateOfBirth)
+    {
+      DateTime dateValue;
+      if (_dateOfBirth == "")
+      {
+        return false;
+      }
+      else if (DateTime.TryParseExact(_dateOfBirth, "g", new CultureInfo("en-US"), DateTimeStyles.AllowLeadingWhite, out dateValue))
+      {
+        Console.WriteLine(dateValue);
+        return true;
+      }
+      return false;
     }
   }
 }

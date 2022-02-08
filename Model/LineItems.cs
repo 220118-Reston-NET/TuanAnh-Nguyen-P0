@@ -35,7 +35,7 @@ namespace Model
     //   }
     // }
     public string ProductName { get; set; }
-    public int Price { get; set; }
+    public int PriceAtCheckedOut { get; set; }
     public int Quantity { get; set; }
     public string ProductID { get; set; }
     public string OrderID { get; set; }
@@ -43,13 +43,13 @@ namespace Model
     public LineItems()
     {
       ProductName = "";
-      Price = 0;
+      PriceAtCheckedOut = 0;
       Quantity = 0;
     }
 
     public override string ToString()
     {
-      return $"{ProductName} - ${Price}({Quantity})";
+      return $"{ProductName} - ${PriceAtCheckedOut}({Quantity})";
     }
   }
 }

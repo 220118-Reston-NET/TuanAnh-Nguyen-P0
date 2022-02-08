@@ -20,7 +20,9 @@ namespace DL
     Products AddProduct(Products p_prod);
     Products SaveProduct(Products p_prod);
     List<Products> GetAllProducts();
+    List<Products> GetAllProductsFromStore(string p_storeID);
     Products GetProductDetailByProductId(string p_prodID);
+    List<StoreFront> GetAllStoreFrontsByProductID(string p_prodID);
   }
   public interface IInventoryRepository
   {

@@ -9,6 +9,7 @@
   - [Customers](#customers)
   - [Stores](#stores)
   - [Admin/Manager](#adminmanager)
+  - [Others](#others)
 - [Technologies](#technologies)
 - [Setting Up & Run the app in your own machine](#setting-up--run-the-app-in-your-own-machine)
   - [Database Setup Section](#database-setup-section)
@@ -19,17 +20,21 @@
 - [Changelog](#changelog)
   - [v1.0.0](#v100)
   - [v1.0.1](#v101)
+  - [v1.0.2](#v102)
 - [Contributing](#contributing)
 - [Contacts](#contacts)
 
 # Features
+>v1.0.2 included
+
 There are 3 main group users in this project:
->v1.0.1 included
 ## Customers
 - Sign Up/Sign In(No need password now)
 - Choose where to shop and place a new order
 - Check Orders History
 - Edit Profile Information (v1.0.1 added)
+- Provide Date Of Bith in Profile(v1.0.2 added)
+- Can not buy the product that have age restriction if not enough age (v1.0.2 added)
 ## Stores
 - Sign Up/Sign In(No need password now)
 - Import new product to store
@@ -40,11 +45,16 @@ There are 3 main group users in this project:
 - Add Tracking Number to Order (v1.0.1 added)
 - Cancel Order (v1.0.1 added)
 - Recall and Return Shipment Order even shipped (v1.0.1 added)
+- Have their own price(due to the price can be changed by Admin after customer placed order issue) (v1.0.2 added)
 ## Admin/Manager
 - Add new product to the system
 - Edit product information
 - Check all the products in the system
 - Edit Product Information (v1.0.1 added)
+- Age Restriction when adding new product and applied to all stores (v1.0.2 added)
+## Others
+- Search Customers
+- Search Products(get all the product information and all the stores that have that product instock)  (v1.0.2 added)
   
 # Technologies
 - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/)
@@ -152,7 +162,7 @@ var configuration = new ConfigurationBuilder()
 string _connectionString = configuration.GetConnectionString(key);
 
 /** Where
-jsonfilename - your json name you just created above.
+jsonfilename - your json file name you just created above.
 key - name of the key in ConnectionStrings. 
 **/
 
@@ -165,7 +175,10 @@ Done :D Enjoy it!
 ## v1.0.1
 - Added [new features](#features).
 - Fixed some bugs.
-
+## v1.0.2
+- Added [new features](#features).
+- Added some validations when adding new customer.
+- Fixed some bugs.
 
 # Contributing
 As I did this project for the course, so if you want to have more features, please give me a request or just [open an issue](https://github.com/220118-Reston-NET/TuanAnh-Nguyen-P0/issues) and tell me your ideas.

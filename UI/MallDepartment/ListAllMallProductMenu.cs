@@ -23,7 +23,7 @@ namespace UI
         Console.WriteLine("Here are all products in the mall:");
         for (int i = 0; i < _listProducts.Count(); i++)
         {
-          Console.WriteLine("- " + _listProducts[i].Name + " - $" + _listProducts[i].Price);
+          Console.WriteLine("- " + _listProducts[i].Name + " - $" + _listProducts[i].Price + (_listProducts[i].MinimumAge == 0 ? "" : $" [AR-{_listProducts[i].MinimumAge}]"));
         }
         Console.WriteLine("-----");
         Console.WriteLine("Please enter the product name that you want to modify information. Ex: '" + _listProducts[0].Name + "'");

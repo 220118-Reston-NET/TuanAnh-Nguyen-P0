@@ -12,7 +12,7 @@ namespace DL
     }
     public List<Products> GetAllInStockProductsDetailFromStore(string p_storeID)
     {
-      string _sqlQuery = @"SELECT p.productID, p.productName, p.productPrice, p.productDesc
+      string _sqlQuery = @"SELECT p.productID, p.productName, p.productPrice, p.productDesc, p.minimumAge
                           FROM Inventory i, Products p
                           WHERE i.productID = p.productID
                             AND i.storeID = @storeID
@@ -35,7 +35,8 @@ namespace DL
             ProductID = reader.GetString(0),
             Name = reader.GetString(1),
             Price = reader.GetInt32(2),
-            Desc = reader.GetString(3)
+            Desc = reader.GetString(3),
+            MinimumAge = reader.GetInt32(4)
           });
         }
       }

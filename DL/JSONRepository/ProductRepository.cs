@@ -78,6 +78,16 @@ namespace DL
       return _listProds;
     }
 
+    public List<Products> GetAllProductsFromStore(string p_storeID)
+    {
+      throw new NotImplementedException();
+    }
+
+    public List<StoreFront> GetAllStoreFrontsByProductID(string p_prodID)
+    {
+      throw new NotImplementedException();
+    }
+
     public Products GetProductDetailByProductId(string p_prodID)
     {
       throw new NotImplementedException();

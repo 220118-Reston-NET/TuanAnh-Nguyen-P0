@@ -28,7 +28,7 @@ namespace UI
         for (int i = 0; i < _listProducts.Count(); i++)
         {
           quantity = _listInventorys.Where(p => p.ProductID == _listProducts[i].ProductID).First().Quantity;
-          Console.WriteLine("- " + _listProducts[i].Name + " - $" + _listProducts[i].Price + " (" + quantity + " left)");
+          Console.WriteLine("- " + _listProducts[i].Name + " - $" + _listProducts[i].Price + " (" + quantity + " left)" + (_listProducts[i].MinimumAge == 0 ? "" : $" [AR-{_listProducts[i].MinimumAge}]"));
         }
         Console.WriteLine("-----");
         Console.WriteLine("Please enter the product name that you want to buy. Ex: '" + _listProducts[0].Name + "'");
@@ -50,8 +50,8 @@ namespace UI
         Console.WriteLine("Your Cart:");
         for (int i = 0; i < _cart.Count(); i++)
         {
-          Console.WriteLine(_cart[i].ProductName + " - $" + _cart[i].Price + "(" + _cart[i].Quantity + ")");
-          _totalPrice += _cart[i].Price * _cart[i].Quantity;
+          Console.WriteLine(_cart[i].ProductName + " - $" + _cart[i].PriceAtCheckedOut + "(" + _cart[i].Quantity + ")");
+          _totalPrice += _cart[i].PriceAtCheckedOut * _cart[i].Quantity;
         }
         Console.WriteLine("Total Price: $" + _totalPrice);
       }
@@ -103,6 +103,16 @@ namespace UI
       Console.WriteLine("[0] - Cancel & Go back");
     }
 
+    protected int Age(DateTime p_dateOfBirth)
+    {
+      int _age = DateTime.UtcNow.Year - p_dateOfBirth.Year;
+      if (DateTime.UtcNow.Month < p_dateOfBirth.Month || DateTime.UtcNow.Month == p_dateOfBirth.Month && DateTime.UtcNow.Day < p_dateOfBirth.Day)
+      {
+        _age--;
+      }
+      return _age;
+    }
+
     public string UserChoice()
     {
       string _userInput = Console.ReadLine();
@@ -144,6 +154,15 @@ namespace UI
           {
             if (_userInput == _listProducts[i].Name)
             {
+              //Check if they have any age to buy the product
+              if (Age(ListCustomersMenu._currentCustomer.DateOfBirth) < _listProducts[i].MinimumAge)
+              {
+                Console.WriteLine("You can not buy this product due to the age restriction!");
+                Console.WriteLine("Please press Enter to continue");
+                Console.ReadLine();
+                return "ListOrderableProdMenu";
+              }
+
               //Check if the quantity customer want to buy is more than the instock products
               int quantity = _listInventorys.Where(p => p.ProductID == _listProducts[i].ProductID).First().Quantity;
 
@@ -160,7 +179,7 @@ namespace UI
               _lineItem = new LineItems();
               _lineItem.ProductID = _listProducts[i].ProductID;
               _lineItem.ProductName = _listProducts[i].Name;
-              _lineItem.Price = _listProducts[i].Price;
+              _lineItem.PriceAtCheckedOut = _listProducts[i].Price;
               _lineItem.Quantity = Convert.ToInt32(_userInputQuantity);
 
               if (AddToCart(_lineItem))

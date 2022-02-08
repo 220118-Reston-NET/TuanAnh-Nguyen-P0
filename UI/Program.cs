@@ -115,6 +115,10 @@ while (repeat)
       Log.Information("Displaying the Search Customer Menu");
       menu = new SearchCustomerMenu(new CustomerBL(new CustomerSQLRepository(_connectionString)));
       break;
+    case "SearchProductMenu":
+      Log.Information("Displaying the Search Product Menu");
+      menu = new SearchProductMenu(new ProductBL(new ProductSQLRepository(_connectionString)));
+      break;
 
     //Main Menu
     case "MainMenu":

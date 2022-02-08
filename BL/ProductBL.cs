@@ -29,6 +29,21 @@ namespace BL
       return _repo.GetAllProducts();
     }
 
+    public List<Products> GetAllProductsByProductName(string p_prodName)
+    {
+      return GetAllProducts().FindAll(p => p.Name.Contains(p_prodName));
+    }
+
+    public List<Products> GetAllProductsFromStore(string p_storeID)
+    {
+      return _repo.GetAllProductsFromStore(p_storeID);
+    }
+
+    public List<StoreFront> GetAllStoreFrontsByProductID(string p_prodID)
+    {
+      return _repo.GetAllStoreFrontsByProductID(p_prodID);
+    }
+
     public Products GetProductDetail(string p_prodId)
     {
       List<Products> _listProds = GetAllProducts();

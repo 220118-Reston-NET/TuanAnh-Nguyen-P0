@@ -22,6 +22,7 @@ namespace UI
       Console.WriteLine("[1] - Name:        " + _prodDetail.Name);
       Console.WriteLine("[2] - Price:       " + _prodDetail.Price);
       Console.WriteLine("[3] - Description: " + _prodDetail.Desc);
+      Console.WriteLine("[4] - Minimum Age: " + _prodDetail.MinimumAge);
       Console.WriteLine("-----");
       Console.WriteLine("[9] - Save");
       Console.WriteLine("[0] - Go back");
@@ -74,6 +75,19 @@ namespace UI
             _userInputDesc = Console.ReadLine();
           }
           _prodDetail.Desc = _userInputDesc;
+          return "EditProductMallMenu";
+        case "4":
+          Console.WriteLine("Please enter the product minimumn age:");
+          string _userInputAge = Console.ReadLine();
+
+          //Check if the input is empty
+          while (!_userInputAge.All(Char.IsDigit) || _userInputAge == "")
+          {
+            Console.WriteLine("Minimum Age have to be a number and should not be empty!");
+            Console.WriteLine("Please enter the minimum age again:");
+            _userInputAge = Console.ReadLine();
+          }
+          _prodDetail.MinimumAge = Convert.ToInt32(_userInputAge);
           return "EditProductMallMenu";
         case "9":
           //Check if all information filled completely

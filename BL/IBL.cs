@@ -24,7 +24,10 @@ namespace BL
     Products AddProduct(Products p_prod);
     Products SaveProduct(Products p_prod);
     List<Products> GetAllProducts();
+    List<Products> GetAllProductsFromStore(string p_storeID);
     Products GetProductDetail(string p_prodId);
+    List<Products> GetAllProductsByProductName(string p_prodName);
+    List<StoreFront> GetAllStoreFrontsByProductID(string p_prodID);
   }
 
   public interface IOrderBL

@@ -53,7 +53,7 @@ namespace DL
 
       //Add new LineItems query
       string _sqlQuery2 = @"INSERT INTO LineItems
-                          VALUES(@productID, @orderID, @quantity)";
+                          VALUES(@productID, @orderID, @quantity, @priceAtCheckedOut)";
 
       Orders _newOrder = new Orders();
       _invenDL = new InventorySQLRepository(_connectionString);
@@ -84,6 +84,7 @@ namespace DL
           command.Parameters.AddWithValue("@productID", item.ProductID);
           command.Parameters.AddWithValue("@orderID", _newOrder.OrderID);
           command.Parameters.AddWithValue("@quantity", item.Quantity);
+          command.Parameters.AddWithValue("@priceAtCheckedOut", item.PriceAtCheckedOut);
 
           command.ExecuteNonQuery();
 
@@ -118,6 +119,7 @@ namespace DL
             ProductID = reader.GetString(0),
             OrderID = reader.GetString(1),
             Quantity = reader.GetInt32(2),
+            PriceAtCheckedOut = reader.GetInt32(3),
             ProductName = _prodDL.GetProductDetailByProductId(reader.GetString(0)).Name
           });
         }

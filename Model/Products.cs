@@ -39,17 +39,19 @@ namespace Model
     //   }
     // }
     public DateTime createdAt { get; set; }
+    public int MinimumAge { get; set; }
 
     public Products()
     {
       Name = "";
       Price = 0;
       Desc = "";
+      MinimumAge = 0;
     }
 
     public override string ToString()
     {
-      return $"Name: {Name}\nPrice: {Price}\nDes: {Desc}";
+      return $"Name: {Name}\nPrice: {Price}\nDescription: {Desc}\nMinimum Age: {MinimumAge}";
     }
   }
 }

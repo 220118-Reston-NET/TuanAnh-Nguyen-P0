@@ -17,16 +17,16 @@ namespace UI
     public static string _selectedReplProdID = "";
     public void DisplayAllProducts()
     {
-      _listProducts = _listProdBL.GetAllProducts();
+      _listProducts = _listProdBL.GetAllProductsFromStore(ListStoresMenu._currentStoreFront.StoreID);
       _listInvens = _listInvenBL.GetAllProductsFromStore(ListStoresMenu._currentStoreFront.StoreID);
-      string _prodName;
+      Products _prod;
       if (_listProducts.Count() > 0)
       {
         Console.WriteLine("Here are all products in your store:");
         for (int i = 0; i < _listInvens.Count(); i++)
         {
-          _prodName = _listProducts.Where(p => p.ProductID == _listInvens[i].ProductID).First().Name;
-          Console.WriteLine("- " + _prodName + " (" + _listInvens[i].Quantity + " left)");
+          _prod = _listProducts.Where(p => p.ProductID == _listInvens[i].ProductID).First();
+          Console.WriteLine("- " + _prod.Name + " (" + _listInvens[i].Quantity + " left)" + (_prod.MinimumAge == 0 ? "" : $" [AR-{_prod.MinimumAge}]"));
         }
         Console.WriteLine("-----");
         Console.WriteLine("Please enter the product name that you want to look at. Ex: '" + _listProducts[0].Name + "'");

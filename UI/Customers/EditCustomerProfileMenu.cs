@@ -24,6 +24,7 @@ namespace UI
       Console.WriteLine("[2] - Address: " + _cusInfo.Address);
       Console.WriteLine("[3] - Email: " + _cusInfo.Email);
       Console.WriteLine("[4] - Phone Number: " + _cusInfo.PhoneNumber);
+      Console.WriteLine("[5] - Date Of Birth: " + _cusInfo.DateOfBirth.ToShortDateString());
       Console.WriteLine("-----");
       Console.WriteLine("[9] - Save & Go back");
       Console.WriteLine("[0] - Go back");
@@ -90,6 +91,19 @@ namespace UI
             _userInputPhoneNumber = Console.ReadLine();
           }
           _cusInfo.PhoneNumber = _userInputPhoneNumber;
+          return "EditCustomerProfile";
+        case "5":
+          Console.WriteLine("Please enter the Date Of Birth following by this format 'MM/dd/yyyy':");
+          string _userInputDOB = Console.ReadLine();
+
+          //Check if the input is empty
+          while (!IsValidDateOfBirth(_userInputDOB + " 8:30 AM"))
+          {
+            Console.WriteLine("Date of Birth is not in the format, please try again! Ex. 12/31/1990");
+            Console.WriteLine("Please enter date of birth following by this format 'MM/dd/yyyy':");
+            _userInputDOB = Console.ReadLine();
+          }
+          _cusInfo.DateOfBirth = Convert.ToDateTime(_userInputDOB);
           return "EditCustomerProfile";
         case "9":
           //Check if all information filled completely
@@ -194,5 +208,19 @@ namespace UI
       }
     }
 
+    public static bool IsValidDateOfBirth(string _dateOfBirth)
+    {
+      DateTime dateValue;
+      if (_dateOfBirth == "")
+      {
+        return false;
+      }
+      else if (DateTime.TryParseExact(_dateOfBirth, "g", new CultureInfo("en-US"), DateTimeStyles.AllowLeadingWhite, out dateValue))
+      {
+        Console.WriteLine(dateValue);
+        return true;
+      }
+      return false;
+    }
   }
 }
