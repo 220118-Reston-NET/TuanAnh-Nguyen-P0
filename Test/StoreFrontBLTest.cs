@@ -74,20 +74,22 @@ namespace Test
     {
       // Arrange
       List<StoreFront> _expectedListOfStoreFronts = new List<StoreFront>();
-      _expectedListOfStoreFronts.Add(new StoreFront()
+      StoreFront _store1 = new StoreFront()
       {
         StoreID = Guid.NewGuid().ToString(),
         Name = "KiTech",
         Address = "Dallas, TX",
         createdAt = new DateTime(2022 - 01 - 29)
-      });
-      _expectedListOfStoreFronts.Add(new StoreFront()
+      };
+      StoreFront _store2 = new StoreFront()
       {
         StoreID = Guid.NewGuid().ToString(),
         Name = "KiStore",
         Address = "Mahattan, NY",
         createdAt = new DateTime(2022 - 01 - 21)
-      });
+      };
+      _expectedListOfStoreFronts.Add(_store1);
+      _expectedListOfStoreFronts.Add(_store2);
 
       Mock<IStoreFrontRepository> _mockRepo = new Mock<IStoreFrontRepository>();
       _mockRepo.Setup(repo => repo.GetALlStoreFronts()).Returns(_expectedListOfStoreFronts);
@@ -106,6 +108,41 @@ namespace Test
           createdAt = new DateTime(2022 - 01 - 22)
         })
       );
+    }
+
+    [Fact]
+    public void Should_Get_StoreFront_Information_By_StoreID()
+    {
+      // Arrange
+      List<StoreFront> _listOfStoreFronts = new List<StoreFront>();
+      StoreFront _store1 = new StoreFront()
+      {
+        StoreID = Guid.NewGuid().ToString(),
+        Name = "KiTech",
+        Address = "Dallas, TX",
+        createdAt = new DateTime(2022 - 01 - 29)
+      };
+      StoreFront _store2 = new StoreFront()
+      {
+        StoreID = Guid.NewGuid().ToString(),
+        Name = "KiStore",
+        Address = "Mahattan, NY",
+        createdAt = new DateTime(2022 - 01 - 21)
+      };
+      _listOfStoreFronts.Add(_store1);
+      _listOfStoreFronts.Add(_store2);
+
+      Mock<IStoreFrontRepository> _mockRepo = new Mock<IStoreFrontRepository>();
+      _mockRepo.Setup(repo => repo.GetALlStoreFronts()).Returns(_listOfStoreFronts);
+      IStoreFrontBL _stofBL = new StoreFrontBL(_mockRepo.Object);
+
+      StoreFront _expectedStore = _store2;
+
+      // Act
+      StoreFront _actualStore = _stofBL.GetStoreFrontInfoByID(_store2.StoreID);
+
+      // Assert
+      Assert.Same(_expectedStore, _actualStore);
     }
   }
 }

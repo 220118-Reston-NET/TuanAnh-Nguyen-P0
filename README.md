@@ -33,7 +33,7 @@ There are 3 main group users in this project:
 - Choose where to shop and place a new order
 - Check Orders History
 - Edit Profile Information (v1.0.1 added)
-- Provide Date Of Bith in Profile(v1.0.2 added)
+- Provide Date Of Birth in Profile(v1.0.2 added)
 - Can not buy the product that have age restriction if not enough age (v1.0.2 added)
 ## Stores
 - Sign Up/Sign In(No need password now)
@@ -186,3 +186,5 @@ As I did this project for the course, so if you want to have more features, plea
 # Contacts
 - Github: [@kirasn](https://github.com/kirasn)
 - Website: [http://www.kiranguyen.com](http://www.kiranguyen.com)
+
+[Back To Top](#project-0---tuan-anh-nguyen)

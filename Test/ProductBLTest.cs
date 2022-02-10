@@ -81,6 +81,7 @@ namespace Test
     [Fact]
     public void Should_Not_Save_The_Product()
     {
+      //Arrange
       List<Products> _expectedListOfProducts = new List<Products>();
       _expectedListOfProducts.Add(new Products()
       {
@@ -120,6 +121,47 @@ namespace Test
           createdAt = new DateTime(2022 - 07 - 19)
         })
       );
+    }
+
+    [Fact]
+    public void Should_Get_Product_Detail_By_ProductID()
+    {
+      //Arrange
+      List<Products> _listOfProducts = new List<Products>();
+      Products _prod1 = new Products()
+      {
+        ProductID = Guid.NewGuid().ToString(),
+        Name = "Towel",
+        Price = 20,
+        Desc = "Soft, Good",
+        MinimumAge = 0,
+        createdAt = new DateTime(2022 - 07 - 19)
+      };
+      Products _prod2 = new Products()
+      {
+        ProductID = Guid.NewGuid().ToString(),
+        Name = "iPad",
+        Price = 899,
+        Desc = "New Generation",
+        MinimumAge = 0,
+        createdAt = new DateTime(2022 - 02 - 19)
+      };
+      _listOfProducts.Add(_prod1);
+      _listOfProducts.Add(_prod2);
+
+      Products _prod = new Products();
+
+      Mock<IProductRepository> _mockRepo = new Mock<IProductRepository>();
+      _mockRepo.Setup(repo => repo.GetAllProducts()).Returns(_listOfProducts);
+      IProductBL _prodBL = new ProductBL(_mockRepo.Object);
+
+      Products _expectedProd = _prod1;
+
+      // Act
+      Products _actualProd = _prodBL.GetProductDetail(_prod1.ProductID);
+
+      // Assert
+      Assert.Same(_expectedProd, _actualProd);
     }
   }
 }
