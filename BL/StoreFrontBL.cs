@@ -12,14 +12,18 @@ namespace BL
     }
     public StoreFront AddStoreFront(StoreFront p_storef)
     {
-      List<StoreFront> _listStores = _repo.GetALlStoreFronts();
+      // List<StoreFront> _listStores = _repo.GetALlStoreFronts();
 
-      for (int i = 0; i < _listStores.Count(); i++)
+      // for (int i = 0; i < _listStores.Count(); i++)
+      // {
+      //   if (_listStores[i].Name == p_storef.Name)
+      //   {
+      //     throw new Exception("Cannot add new StoreFront due to this name is already in the database!");
+      //   }
+      // }
+      if (GetALlStoreFronts().Any(p => p.Name == p_storef.Name))
       {
-        if (_listStores[i].Name == p_storef.Name)
-        {
-          throw new Exception("Cannot add new StoreFront due to this name is already in the database!");
-        }
+        throw new Exception("Cannot add new StoreFront due to this name is already in the database!");
       }
 
       return _repo.AddStoreFront(p_storef);
@@ -39,8 +43,8 @@ namespace BL
 
     public StoreFront SaveStoreFront(StoreFront p_storef)
     {
-      List<StoreFront> _listStore = GetALlStoreFronts().Where(p => p.StoreID != p_storef.StoreID).ToList();
-      if (_listStore.Any(p => p.Name == p_storef.Name))
+      // List<StoreFront> _listStore = GetALlStoreFronts().Where(p => p.StoreID != p_storef.StoreID).ToList();
+      if (GetALlStoreFronts().Any(p => p.Name == p_storef.Name))
       {
         throw new Exception("Cannot save store front due to name of store front is already in the store database!");
       }
