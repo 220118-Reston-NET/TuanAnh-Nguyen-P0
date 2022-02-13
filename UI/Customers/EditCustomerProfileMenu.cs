@@ -24,7 +24,7 @@ namespace UI
       Console.WriteLine("[2] - Address: " + _cusInfo.Address);
       Console.WriteLine("[3] - Email: " + _cusInfo.Email);
       Console.WriteLine("[4] - Phone Number: " + _cusInfo.PhoneNumber);
-      Console.WriteLine("[5] - Date Of Birth: " + _cusInfo.DateOfBirth.ToShortDateString());
+      Console.WriteLine("[5] - Date Of Birth: " + _cusInfo.DateOfBirth.ToShortDateString() + $"({Age(_cusInfo.DateOfBirth)})");
       Console.WriteLine("-----");
       Console.WriteLine("[9] - Save & Go back");
       Console.WriteLine("[0] - Go back");
@@ -221,6 +221,16 @@ namespace UI
         return true;
       }
       return false;
+    }
+
+    public int Age(DateTime p_dateOfBirth)
+    {
+      int _age = DateTime.UtcNow.Year - p_dateOfBirth.Year;
+      if (DateTime.UtcNow.Month < p_dateOfBirth.Month || DateTime.UtcNow.Month == p_dateOfBirth.Month && DateTime.UtcNow.Day < p_dateOfBirth.Day)
+      {
+        _age--;
+      }
+      return _age;
     }
   }
 }
