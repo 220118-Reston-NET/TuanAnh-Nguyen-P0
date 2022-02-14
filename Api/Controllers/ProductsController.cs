@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BL;
+using Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,11 +50,37 @@ namespace Api.Controllers
       }
     }
 
+    // PUT: api/Products
+    [HttpPut]
+    public IActionResult SaveProduct(Products p_prod)
+    {
+      try
+      {
+        Log.Information("Save product information: " + p_prod);
+        return Ok(_prodBL.SaveProduct(p_prod));
+      }
+      catch (System.Exception e)
+      {
+        Log.Warning(e.Message);
+        return StatusCode(500, e);
+      }
+    }
+
     // // POST: api/Products
-    // [HttpPost]
-    // public void Post([FromBody] string value)
-    // {
-    // }
+    [HttpPost]
+    public IActionResult AddNewProduct(Products p_prod)
+    {
+      try
+      {
+        Log.Information("Add new product: " + p_prod);
+        return Ok(_prodBL.AddProduct(p_prod));
+      }
+      catch (System.Exception e)
+      {
+        Log.Warning(e.Message);
+        return StatusCode(500, e);
+      }
+    }
 
     // // PUT: api/Products/5
     // [HttpPut("{id}")]

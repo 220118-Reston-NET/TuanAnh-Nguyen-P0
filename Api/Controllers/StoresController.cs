@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model;
 
 namespace Api.Controllers
 {
@@ -50,17 +51,37 @@ namespace Api.Controllers
       }
     }
 
-    // // POST: api/Stores
-    // [HttpPost]
-    // public void Post([FromBody] string value)
-    // {
-    // }
+    // POST: api/Stores
+    [HttpPost]
+    public IActionResult AddNewStoreFront(StoreFront p_storeF)
+    {
+      try
+      {
+        Log.Information("Add new store front information: " + p_storeF);
+        return Ok(_storefBL.AddStoreFront(p_storeF));
+      }
+      catch (System.Exception e)
+      {
+        Log.Warning(e.Message);
+        return StatusCode(500, e);
+      }
+    }
 
-    // // PUT: api/Stores/5
-    // [HttpPut("{id}")]
-    // public void Put(int id, [FromBody] string value)
-    // {
-    // }
+    // PUT: api/Stores
+    [HttpPut]
+    public IActionResult SaveStoreFront(StoreFront p_storeF)
+    {
+      try
+      {
+        Log.Information("Save store front information: " + p_storeF);
+        return Ok(_storefBL.SaveStoreFront(p_storeF));
+      }
+      catch (System.Exception e)
+      {
+        Log.Warning(e.Message);
+        return StatusCode(500, e);
+      }
+    }
 
     // // DELETE: api/Stores/5
     // [HttpDelete("{id}")]

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model;
 
 namespace Api.Controllers
 {
@@ -49,11 +50,21 @@ namespace Api.Controllers
       }
     }
 
-    // // POST: api/Orders
-    // [HttpPost]
-    // public void Post([FromBody] string value)
-    // {
-    // }
+    // POST: api/Orders
+    [HttpPost]
+    public IActionResult AddNewOrder(List<LineItems> p_LineItems, string p_storeID, string p_cusID, int totalPrice)
+    {
+      try
+      {
+        Log.Information("Added new order");
+        return Ok(_orderBL.PlaceOrder(p_LineItems, p_storeID, p_cusID, totalPrice));
+      }
+      catch (System.Exception e)
+      {
+        Log.Warning(e.Message);
+        return StatusCode(500, e);
+      }
+    }
 
     // // PUT: api/Orders/5
     // [HttpPut("{id}")]

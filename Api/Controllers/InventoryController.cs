@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model;
 
 namespace Api.Controllers
 {
@@ -40,11 +41,21 @@ namespace Api.Controllers
       }
     }
 
-    // // POST: api/Inventory
-    // [HttpPost]
-    // public void Post([FromBody] string value)
-    // {
-    // }
+    // POST: api/Inventory
+    [HttpPost]
+    public IActionResult ImportNewProductToInventory(Inventory p_inven)
+    {
+      try
+      {
+        Log.Information("Import new product to store's inventory");
+        return Ok(_invenBL.ImportProduct(p_inven));
+      }
+      catch (System.Exception e)
+      {
+        Log.Warning(e.Message);
+        return StatusCode(500, e);
+      }
+    }
 
     // // PUT: api/Inventory/5
     // [HttpPut("{id}")]

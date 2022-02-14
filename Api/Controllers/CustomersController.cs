@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using BL;
+using Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace Api.Controllers
     {
       _cusBL = p_cusBL;
     }
+
     // GET: api/Customers
     [HttpGet]
     public IActionResult GetAllCustomers()
@@ -50,17 +52,37 @@ namespace Api.Controllers
       }
     }
 
-    // // POST: api/Customers
-    // [HttpPost]
-    // public void Post([FromBody] string value)
-    // {
-    // }
+    // POST: api/Customers
+    [HttpPost]
+    public IActionResult AddNewCustomer(Customer p_cus)
+    {
+      try
+      {
+        Log.Information("Add new customer: " + p_cus);
+        return Ok(_cusBL.AddCustomer(p_cus));
+      }
+      catch (System.Exception e)
+      {
+        Log.Warning(e.Message);
+        return StatusCode(500, e);
+      }
+    }
 
-    // // PUT: api/Customers/5
-    // [HttpPut("{id}")]
-    // public void Put(int id, [FromBody] string value)
-    // {
-    // }
+    // PUT: api/Customers
+    [HttpPut]
+    public IActionResult SaveCustomer(Customer p_cus)
+    {
+      try
+      {
+        Log.Information("Save customer: " + p_cus);
+        return Ok(_cusBL.SaveCustomer(p_cus));
+      }
+      catch (System.Exception e)
+      {
+        Log.Warning(e.Message);
+        return StatusCode(500, e);
+      }
+    }
 
     // // DELETE: api/Customers/5
     // [HttpDelete("{id}")]
