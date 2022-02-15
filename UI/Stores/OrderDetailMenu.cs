@@ -67,13 +67,14 @@ namespace UI
             Console.WriteLine("Tracking number should not be empty! Please try again:");
             _userInputTracking = Console.ReadLine();
           }
-
+          Log.Information($"Added new tracking number: '_userInputTracking' to the order: {ListStoreOrdersMenu._selectOrderID}");
           _orderBL.AddNewTrackingNumber(ListStoreOrdersMenu._selectOrderID, _userInputTracking);
           _orderBL.UpdateOrderDetail(ListStoreOrdersMenu._selectOrderID, "Shipped");
           return "OrderDetailMenu";
 
         case "2":
           _orderBL.UpdateOrderDetail(ListStoreOrdersMenu._selectOrderID, "Cancelled");
+          Log.Information("Cancelled order: " + ListStoreOrdersMenu._selectOrderID);
           Console.WriteLine("Order cancelled successfully!");
           Console.WriteLine("Requested to return all the shipment(if shipped) back successfully!");
           _orderBL.RemoveAllTrackingByOrderID(ListStoreOrdersMenu._selectOrderID);

@@ -52,6 +52,7 @@ namespace UI
             if (_userInput == _listStores[i].Name)
             {
               _selectedStore = _listStores[i];
+              Log.Information("Customer choose to view store: " + _selectedStore.Name);
               return "ListOrderableProdMenu";
             }
           }

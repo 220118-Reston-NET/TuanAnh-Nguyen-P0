@@ -73,18 +73,19 @@ namespace UI
               _newImportProduct.Quantity = Convert.ToInt32(_userInputQuantity);
 
               _listProductOfStore = _listInvenBL.GetAllProductsFromStore(ListStoresMenu._currentStoreFront.StoreID);
-              //TODO Check the instock product of store
 
               if (_listProductOfStore.Any(p => p.ProductID == _listProducts[i].ProductID))
               {
                 _newImportProduct = new Inventory();
                 Console.WriteLine("You probably already have this product in your store! Please select another product!");
                 System.Threading.Thread.Sleep(2000);
+                Log.Information("Trying to import the product already have in inventory");
                 return "ImportNewProduct";
               }
               else
               {
                 _listInvenBL.ImportProduct(_newImportProduct);
+                Log.Information("Imported new product succesfully to inventory: " + _newImportProduct);
                 Console.WriteLine("Imported new product successfully!");
                 Console.WriteLine("Returning back to the previous menu!");
                 System.Threading.Thread.Sleep(2000);

@@ -79,18 +79,23 @@ namespace UI
           return "MainMenu";
         case "All":
           _filter = "";
+          Log.Information("Changed filter to All");
           return "ListCustomerOrdersMenu";
         case "Order Placed":
           _filter = "Order Placed";
+          Log.Information("Changed filter to Order Placed");
           return "ListCustomerOrdersMenu";
         case "Shipped":
           _filter = "Shipped";
+          Log.Information("Changed filter to Shipped");
           return "ListCustomerOrdersMenu";
         case "Delivered":
           _filter = "Delivered";
+          Log.Information("Changed filter to Delivered");
           return "ListCustomerOrdersMenu";
         case "Cancelled":
           _filter = "Cancelled";
+          Log.Information("Changed filter to Cancalled");
           return "ListCustomerOrdersMenu";
 
         default:
