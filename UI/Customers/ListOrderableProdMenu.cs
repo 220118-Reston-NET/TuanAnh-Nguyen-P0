@@ -142,6 +142,7 @@ namespace UI
             Log.Information($"Under {ListCustomersMenu._currentCustomer.Name} to store: {PlaceNewOrderMenu._selectedStore.Name}");
             _orderBL.PlaceOrder(_cart, PlaceNewOrderMenu._selectedStore.StoreID, ListCustomersMenu._currentCustomer.CustomerID, _totalPrice);
             Log.Information("Added new order successfully");
+            _cart = new List<LineItems>();
             Console.WriteLine("Placed Order successfully!");
             Console.WriteLine("Returning to the previous menu...");
             System.Threading.Thread.Sleep(2000);
